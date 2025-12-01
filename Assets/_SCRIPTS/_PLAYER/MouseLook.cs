@@ -39,6 +39,7 @@ public class MouseLook : MonoBehaviour
     }
 
     private PlayerInputHandler inputHandler;
+    private WeaponController weaponController;
     private float verticalRotation = 0f;
     private float horizontalRotation = 0f;
     private float accumulatedRecoilYaw = 0f;
@@ -46,6 +47,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         inputHandler = GetComponent<PlayerInputHandler>();
+        weaponController = GetComponent<WeaponController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -65,9 +67,11 @@ public class MouseLook : MonoBehaviour
     {
         if (cameraTransform == null) return;
 
+        float sensitivityMultiplier = weaponController != null ? weaponController.GetSensitivityMultiplier() : 1f;
+
         Vector2 mouseDelta = inputHandler.MouseLookInput;
-        float horizontalInput = mouseDelta.x * mouseSensitivity;
-        float verticalInput = mouseDelta.y * mouseSensitivity;
+        float horizontalInput = mouseDelta.x * mouseSensitivity * sensitivityMultiplier;
+        float verticalInput = mouseDelta.y * mouseSensitivity * sensitivityMultiplier;
 
         // Apply horizontal rotation to player body
         // Include accumulated recoil yaw offset (additive per frame from recoil)

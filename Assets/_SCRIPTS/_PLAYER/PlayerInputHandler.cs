@@ -9,11 +9,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInput { get; private set; }
     public bool ShootInput { get; private set; }
     public bool ShootInputPressedThisFrame { get; private set; }
+    public bool AimInput { get; private set; }
+    public bool AimInputPressedThisFrame { get; private set; }
 
     private InputAction mouseLookAction;
     private InputAction movementAction;
     private InputAction jumpAction;
     private InputAction shootAction;
+    private InputAction aimAction;
 
     void Awake()
     {
@@ -26,11 +29,13 @@ public class PlayerInputHandler : MonoBehaviour
             .With("Right", "<Keyboard>/d");
         jumpAction = new InputAction("Jump", InputActionType.Button, "<Keyboard>/space");
         shootAction = new InputAction("Shoot", InputActionType.Button, "<Mouse>/leftButton");
+        aimAction = new InputAction("Aim", InputActionType.Button, "<Mouse>/rightButton");
 
         mouseLookAction.Enable();
         movementAction.Enable();
         jumpAction.Enable();
         shootAction.Enable();
+        aimAction.Enable();
     }
 
     void Update()
@@ -40,6 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
         JumpInput = jumpAction.WasPressedThisFrame();
         ShootInput = shootAction.IsPressed();
         ShootInputPressedThisFrame = shootAction.WasPressedThisFrame();
+        AimInput = aimAction.IsPressed();
+        AimInputPressedThisFrame = aimAction.WasPressedThisFrame();
     }
 
     void OnDisable()
@@ -48,5 +55,6 @@ public class PlayerInputHandler : MonoBehaviour
         movementAction?.Disable();
         jumpAction?.Disable();
         shootAction?.Disable();
+        aimAction?.Disable();
     }
 }

@@ -396,28 +396,39 @@ public class RecoilSystem : MonoBehaviour
     {
         if (_weaponTransform == null) return;
 
-        // Calculate sway and bobbing from WeaponController
-        Vector3 swayPosition = Vector3.zero;
-        Vector3 bobPosition = Vector3.zero;
-        if (_weaponController != null)
+        bool isAiming = _weaponController != null && _weaponController.IsAiming();
+
+        if (!isAiming)
         {
-            swayPosition = _weaponController.HandleWeaponSway();
-            bobPosition = _weaponController.HandleBobbing();
+            // Calculate sway and bobbing from WeaponController
+            Vector3 swayPosition = Vector3.zero;
+            Vector3 bobPosition = Vector3.zero;
+            if (_weaponController != null)
+            {
+                swayPosition = _weaponController.HandleWeaponSway();
+                bobPosition = _weaponController.HandleBobbing();
+            }
+
+            // Calculate target position and rotation
+            Vector3 targetPosition = _originalWeaponPosition + _state.weaponPositionOffset + swayPosition + bobPosition;
+            Quaternion targetRotation = _originalWeaponRotation * _state.weaponRotationOffset;
+
+            // Add camera shake offset if available
+            if (_cameraShaker != null && _cameraShaker.IsEnabled)
+            {
+                targetPosition += _cameraShaker.CurrentShakeOffset;
+            }
+
+            // Smoothly interpolate to target
+            _weaponTransform.localPosition = Vector3.Lerp(_weaponTransform.localPosition, targetPosition, _config.swaySmoothness * deltaTime);
+            _weaponTransform.localRotation = Quaternion.Slerp(_weaponTransform.localRotation, targetRotation, _config.recoverySpeed * deltaTime);
         }
-
-        // Calculate target position and rotation
-        Vector3 targetPosition = _originalWeaponPosition + _state.weaponPositionOffset + swayPosition + bobPosition;
-        Quaternion targetRotation = _originalWeaponRotation * _state.weaponRotationOffset;
-
-        // Add camera shake offset if available
-        if (_cameraShaker != null && _cameraShaker.IsEnabled)
+        else
         {
-            targetPosition += _cameraShaker.CurrentShakeOffset;
+            // When aiming, only apply rotation, let WeaponController handle position
+            Quaternion targetRotation = _originalWeaponRotation * _state.weaponRotationOffset;
+            _weaponTransform.localRotation = Quaternion.Slerp(_weaponTransform.localRotation, targetRotation, _config.recoverySpeed * deltaTime);
         }
-
-        // Smoothly interpolate to target
-        _weaponTransform.localPosition = Vector3.Lerp(_weaponTransform.localPosition, targetPosition, _config.swaySmoothness * deltaTime);
-        _weaponTransform.localRotation = Quaternion.Slerp(_weaponTransform.localRotation, targetRotation, _config.recoverySpeed * deltaTime);
     }
 
     #endregion

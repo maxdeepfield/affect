@@ -47,6 +47,14 @@ public class WeaponController : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private WeaponSounds weaponSounds;
 
+    [Header("Aiming Settings")]
+    [SerializeField] private float normalFOV = 60f;
+    [SerializeField] private float aimFOV = 30f;
+    [SerializeField] private float aimSpeed = 8f;
+    [SerializeField] private float aimSensitivityMultiplier = 0.5f;
+    [SerializeField] private Vector3 aimPositionOffset = new Vector3(0f, 0f, 0.2f);
+    [SerializeField] private float aimPositionSpeed = 10f;
+
     private float timer;
     private Vector3 targetWeaponPosition;
     private Vector3 recoilOffset;
@@ -59,13 +67,21 @@ public class WeaponController : MonoBehaviour
     private CharacterController characterController;
     private Transform cameraTransform;
     private MouseLook mouseLook;
+    private Camera playerCamera;
+    private bool isAiming;
 
     private void Start()
     {
         inputHandler = GetComponent<PlayerInputHandler>();
         characterController = GetComponent<CharacterController>();
-        cameraTransform = GetComponentInChildren<Camera>()?.transform;
+        playerCamera = GetComponentInChildren<Camera>();
+        cameraTransform = playerCamera?.transform;
         mouseLook = GetComponent<MouseLook>();
+
+        if (playerCamera != null)
+        {
+            normalFOV = playerCamera.fieldOfView;
+        }
 
         // Find RecoilSystem if not assigned
         if (recoilSystem == null)
@@ -102,12 +118,42 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
+        HandleAiming();
         HandleShooting();
+    }
+
+    private void HandleAiming()
+    {
+        if (inputHandler == null || playerCamera == null) return;
+
+        if (inputHandler.AimInputPressedThisFrame)
+        {
+            isAiming = !isAiming;
+        }
+
+        float targetFOV = isAiming ? aimFOV : normalFOV;
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, Time.deltaTime * aimSpeed);
+
+        if (weaponTransform != null)
+        {
+            Vector3 targetPosition = isAiming ? originalWeaponPosition + aimPositionOffset : originalWeaponPosition;
+            weaponTransform.localPosition = Vector3.Lerp(weaponTransform.localPosition, targetPosition, Time.deltaTime * aimPositionSpeed);
+        }
+    }
+
+    public bool IsAiming()
+    {
+        return isAiming;
+    }
+
+    public float GetSensitivityMultiplier()
+    {
+        return isAiming ? aimSensitivityMultiplier : 1f;
     }
 
     public Vector3 HandleWeaponSway()
     {
-        if (weaponTransform == null || inputHandler == null) return Vector3.zero;
+        if (weaponTransform == null || inputHandler == null || isAiming) return Vector3.zero;
 
         Vector2 mouseDelta = inputHandler.MouseLookInput;
 
@@ -122,7 +168,7 @@ public class WeaponController : MonoBehaviour
 
     public Vector3 HandleBobbing()
     {
-        if (characterController == null) return Vector3.zero;
+        if (characterController == null || isAiming) return Vector3.zero;
 
         if (characterController.velocity.magnitude > 0.1f)
         {
