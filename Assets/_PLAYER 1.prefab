@@ -171,6 +171,85 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &4574279869481629418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3911700976471844823}
+  - component: {fileID: 5035562828012493958}
+  - component: {fileID: 1789130311533511128}
+  - component: {fileID: 5273772672905358657}
+  m_Layer: 0
+  m_Name: RecoilModules
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3911700976471844823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574279869481629418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9152546151997973106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5035562828012493958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574279869481629418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02c2add4e949c749bcf87fd7e88dc88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecoilRandomizer
+  _horizontalSpread: 2
+  _verticalVariationMin: 0.8
+  _verticalVariationMax: 1.2
+  _noiseScale: 0.5
+--- !u!114 &1789130311533511128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574279869481629418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6789012345678abcdef01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseTracker
+  _compensationMultiplier: 1.5
+  _maxCompensationRate: 2
+--- !u!114 &5273772672905358657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574279869481629418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b63a61a35da1a4c9a6d1b6aab2c756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShaker
+  _shakeIntensity: 0.02
+  _shakeFrequency: 25
+  _pathFollowStrength: 0.5
 --- !u!1 &4719889500736725354
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +491,7 @@ GameObject:
   - component: {fileID: 2291973645121209827}
   - component: {fileID: 4761213124988317402}
   - component: {fileID: 2031264459780546811}
+  - component: {fileID: 2331379470824107058}
   m_Layer: 0
   m_Name: _PLAYER 1
   m_TagString: Untagged
@@ -433,6 +513,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8550231644536975351}
+  - {fileID: 3911700976471844823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5696923514016605388
@@ -578,6 +659,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 5
   gravity: -9.81
+  footstepSounds: {fileID: 0}
 --- !u!114 &4761213124988317402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +675,8 @@ MonoBehaviour:
   mouseSensitivity: 0.1
   upDownRange: 80
   cameraTransform: {fileID: 0}
+  recoilPitchOffset: 0
+  recoilYawOffset: 0
 --- !u!114 &2031264459780546811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,21 +689,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c74c5d2d2fbc7641bf96c8a54213a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
-  weaponTransform: {fileID: 0}
-  recoilRotationAmount: 15
-  recoilPositionAmount: 0.1
-  recoilDuration: 0.1
-  cameraShakeAmount: 0.1
-  cameraShakeDuration: 0.1
+  fireMode: 1
   fireRate: 0.5
+  maxRange: 200
+  damage: 20
+  impactForce: 50
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  recoilSystem: {fileID: 2331379470824107058}
+  weaponTransform: {fileID: 0}
+  muzzlePosition: {fileID: 0}
+  shellEjectPort: {fileID: 0}
   muzzleFlashPrefab: {fileID: 0}
   flashLightPrefab: {fileID: 0}
-  muzzlePosition: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  bulletSpeed: 100
+  flashLightDuration: 0.05
+  shellPrefab: {fileID: 0}
+  shellEjectForce: 3
+  shellEjectTorque: 1
+  shellLifetime: 5
+  bulletHolePrefab: {fileID: 0}
+  reticleFeedback: {fileID: 0}
   swayAmount: 0.02
   swaySmoothness: 4
   bobbingSpeed: 14
+  bobbingAmount: 0.05
+  weaponSounds: {fileID: 0}
+--- !u!114 &2331379470824107058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955798138335458819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea8bc88406430c429759dd9afffb6da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecoilSystem
+  _config:
+    baseVerticalKick: 2
+    maxAccumulatedVertical: 15
+    baseHorizontalKick: 0.5
+    horizontalSpread: 2
+    weaponKickbackDistance: 0.05
+    weaponRotationKick: 3
+    recoverySpeed: 8
+    recoveryCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    verticalVariationMin: 0.8
+    verticalVariationMax: 1.2
+    noiseScale: 0.5
+    compensationMultiplier: 1.5
+    maxCompensationRate: 2
+    shakeIntensity: 0.02
+    shakeFrequency: 25
+    pathFollowStrength: 0.5
+  _cameraTransform: {fileID: 3693352706440075271}
+  _weaponTransform: {fileID: 7294827164474870434}
+  _mouseLook: {fileID: 4761213124988317402}
 --- !u!1 &7123593920408734387
 GameObject:
   m_ObjectHideFlags: 0

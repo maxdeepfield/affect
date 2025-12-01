@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0,0943063">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="46" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.094306" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1057" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="46" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.085200" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12036" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1034" name="StabilizationProperties" fullname="StabilizationProperties" classname="StabilizationProperties" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.078688" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1041" name="ApplyConfiguration_SetsAllParameters" fullname="StabilizationProperties.ApplyConfiguration_SetsAllParameters" methodname="ApplyConfiguration_SetsAllParameters" classname="StabilizationProperties" runstate="Runnable" seed="527069830" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.025701" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1040" name="DisabledStabilizer_DoesNotApplyForces" fullname="StabilizationProperties.DisabledStabilizer_DoesNotApplyForces" methodname="DisabledStabilizer_DoesNotApplyForces" classname="StabilizationProperties" runstate="Runnable" seed="1741615147" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.003772" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1035" name="Property10_BodyHeightMaintenance" fullname="StabilizationProperties.Property10_BodyHeightMaintenance" methodname="Property10_BodyHeightMaintenance" classname="StabilizationProperties" runstate="Runnable" seed="1764862381" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.010052" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1036" name="Property11_StabilizationForceDirection" fullname="StabilizationProperties.Property11_StabilizationForceDirection" methodname="Property11_StabilizationForceDirection" classname="StabilizationProperties" runstate="Runnable" seed="1497010985" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.002190" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1037" name="Property12_StabilizationDamping" fullname="StabilizationProperties.Property12_StabilizationDamping" methodname="Property12_StabilizationDamping" classname="StabilizationProperties" runstate="Runnable" seed="301011459" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.000782" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1039" name="StabilizeHeight_AppliesForceAlongSurfaceNormal" fullname="StabilizationProperties.StabilizeHeight_AppliesForceAlongSurfaceNormal" methodname="StabilizeHeight_AppliesForceAlongSurfaceNormal" classname="StabilizationProperties" runstate="Runnable" seed="1121587295" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.001165" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1038" name="StabilizeOrientation_AppliesTorqueTowardTarget" fullname="StabilizationProperties.StabilizeOrientation_AppliesTorqueTowardTarget" methodname="StabilizeOrientation_AppliesTorqueTowardTarget" classname="StabilizationProperties" runstate="Runnable" seed="1585415701" result="Passed" start-time="2025-11-29 09:33:21Z" end-time="2025-11-29 09:33:21Z" duration="0.002147" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

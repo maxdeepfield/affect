@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0,0859868">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="39" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.085987" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1049" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="39" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.078341" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="19756" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1043" name="SpiderSerializationProperties" fullname="SpiderSerializationProperties" classname="SpiderSerializationProperties" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.076470" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1048" name="Clone_CreatesIndependentCopy" fullname="SpiderSerializationProperties.Clone_CreatesIndependentCopy" methodname="Clone_CreatesIndependentCopy" classname="SpiderSerializationProperties" runstate="Runnable" seed="1999727205" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.008444" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1047" name="FromJson_RestoresAllFields" fullname="SpiderSerializationProperties.FromJson_RestoresAllFields" methodname="FromJson_RestoresAllFields" classname="SpiderSerializationProperties" runstate="Runnable" seed="132908916" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.001361" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1045" name="Property16_InvalidJsonReturnsDefaultConfiguration" fullname="SpiderSerializationProperties.Property16_InvalidJsonReturnsDefaultConfiguration" methodname="Property16_InvalidJsonReturnsDefaultConfiguration" classname="SpiderSerializationProperties" runstate="Runnable" seed="969029658" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.052827" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON must represent an object type.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+]]></output>
+        </test-case>
+        <test-case id="1044" name="Property4_ConfigurationRoundTripSerialization" fullname="SpiderSerializationProperties.Property4_ConfigurationRoundTripSerialization" methodname="Property4_ConfigurationRoundTripSerialization" classname="SpiderSerializationProperties" runstate="Runnable" seed="371840857" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.002280" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1046" name="ToJson_ProducesValidJsonFormat" fullname="SpiderSerializationProperties.ToJson_ProducesValidJsonFormat" methodname="ToJson_ProducesValidJsonFormat" classname="SpiderSerializationProperties" runstate="Runnable" seed="968708580" result="Passed" start-time="2025-11-29 09:28:52Z" end-time="2025-11-29 09:28:52Z" duration="0.001681" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

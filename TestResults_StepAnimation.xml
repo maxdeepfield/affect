@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0,0363228">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="53" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.036323" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1065" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="53" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.030420" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="24340" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1042" name="StepAnimationProperties" fullname="StepAnimationProperties" classname="StepAnimationProperties" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.028173" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1047" name="ApplyConfiguration_SetsAllParameters" fullname="StepAnimationProperties.ApplyConfiguration_SetsAllParameters" methodname="ApplyConfiguration_SetsAllParameters" classname="StepAnimationProperties" runstate="Runnable" seed="393357124" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.010311" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1048" name="ArcHeight_ScalesWithStepHeight" fullname="StepAnimationProperties.ArcHeight_ScalesWithStepHeight" methodname="ArcHeight_ScalesWithStepHeight" classname="StepAnimationProperties" runstate="Runnable" seed="1708342275" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.000606" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1045" name="ArcHeight_ZeroAtStartAndEnd" fullname="StepAnimationProperties.ArcHeight_ZeroAtStartAndEnd" methodname="ArcHeight_ZeroAtStartAndEnd" classname="StepAnimationProperties" runstate="Runnable" seed="2075348762" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.000324" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1049" name="CalculateStepPosition_ClampsProgress" fullname="StepAnimationProperties.CalculateStepPosition_ClampsProgress" methodname="CalculateStepPosition_ClampsProgress" classname="StepAnimationProperties" runstate="Runnable" seed="1752634368" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.001651" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1043" name="Property13_StepArcMaximumAtMidpoint" fullname="StepAnimationProperties.Property13_StepArcMaximumAtMidpoint" methodname="Property13_StepArcMaximumAtMidpoint" classname="StepAnimationProperties" runstate="Runnable" seed="1854792235" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.001252" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1044" name="Property14_StepCompletionAccuracy" fullname="StepAnimationProperties.Property14_StepCompletionAccuracy" methodname="Property14_StepCompletionAccuracy" classname="StepAnimationProperties" runstate="Runnable" seed="273041338" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.000697" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1046" name="StepPosition_AtStartEqualsStartPosition" fullname="StepAnimationProperties.StepPosition_AtStartEqualsStartPosition" methodname="StepPosition_AtStartEqualsStartPosition" classname="StepAnimationProperties" runstate="Runnable" seed="1952607662" result="Passed" start-time="2025-11-29 09:36:27Z" end-time="2025-11-29 09:36:27Z" duration="0.000485" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

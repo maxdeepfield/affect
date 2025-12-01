@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0,0858985">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="76" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.085899" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1091" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="76" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.073477" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25604" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1008" name="DamageProperties" fullname="DamageProperties" classname="DamageProperties" runstate="Runnable" testcasecount="8" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.057215" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1016" name="DestroyedSegments_ReduceActiveBoneCount" fullname="DamageProperties.DestroyedSegments_ReduceActiveBoneCount" methodname="DestroyedSegments_ReduceActiveBoneCount" classname="DamageProperties" runstate="Runnable" seed="568106358" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.022078" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1014" name="ExcessiveDamage_ClampsToZero" fullname="DamageProperties.ExcessiveDamage_ClampsToZero" methodname="ExcessiveDamage_ClampsToZero" classname="DamageProperties" runstate="Runnable" seed="1583686701" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000919" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="InvalidSegmentIndex_NoException" fullname="DamageProperties.InvalidSegmentIndex_NoException" methodname="InvalidSegmentIndex_NoException" classname="DamageProperties" runstate="Runnable" seed="214894319" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000682" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="MultipleDamage_Accumulates" fullname="DamageProperties.MultipleDamage_Accumulates" methodname="MultipleDamage_Accumulates" classname="DamageProperties" runstate="Runnable" seed="1018458365" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000318" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="PartialDamage_SegmentRemainsActive" fullname="DamageProperties.PartialDamage_SegmentRemainsActive" methodname="PartialDamage_SegmentRemainsActive" classname="DamageProperties" runstate="Runnable" seed="1691252562" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000209" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="Property23_SegmentDamageTracking" fullname="DamageProperties.Property23_SegmentDamageTracking" methodname="Property23_SegmentDamageTracking" classname="DamageProperties" runstate="Runnable" seed="1580745691" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000943" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Property24_SegmentDetachmentThreshold" fullname="DamageProperties.Property24_SegmentDetachmentThreshold" methodname="Property24_SegmentDetachmentThreshold" classname="DamageProperties" runstate="Runnable" seed="1964577846" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.000698" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="Property25_IKChainRecalculationAfterDamage" fullname="DamageProperties.Property25_IKChainRecalculationAfterDamage" methodname="Property25_IKChainRecalculationAfterDamage" classname="DamageProperties" runstate="Runnable" seed="120108285" result="Passed" start-time="2025-11-29 13:52:35Z" end-time="2025-11-29 13:52:35Z" duration="0.005581" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

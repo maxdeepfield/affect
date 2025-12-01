@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0,1614222">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="61" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.161422" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1074" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="61" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.153146" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20928" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1034" name="SpiderIKSystemProperties" fullname="SpiderIKSystemProperties" classname="SpiderIKSystemProperties" runstate="Runnable" testcasecount="8" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.148576" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1040" name="Initialize_DiscoversModules" fullname="SpiderIKSystemProperties.Initialize_DiscoversModules" methodname="Initialize_DiscoversModules" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1263608703" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.025683" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[SpiderIKSystem] Discovered 2 modules
+]]></output>
+        </test-case>
+        <test-case id="1035" name="Property15_GracefulModuleDegradation" fullname="SpiderIKSystemProperties.Property15_GracefulModuleDegradation" methodname="Property15_GracefulModuleDegradation" classname="SpiderIKSystemProperties" runstate="Runnable" seed="291137281" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.096838" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+]]></output>
+        </test-case>
+        <test-case id="1036" name="Property17_VelocityBasedStrideScaling" fullname="SpiderIKSystemProperties.Property17_VelocityBasedStrideScaling" methodname="Property17_VelocityBasedStrideScaling" classname="SpiderIKSystemProperties" runstate="Runnable" seed="740808239" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.001386" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1037" name="Property18_StrideDirectionAlignment" fullname="SpiderIKSystemProperties.Property18_StrideDirectionAlignment" methodname="Property18_StrideDirectionAlignment" classname="SpiderIKSystemProperties" runstate="Runnable" seed="799655308" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.000874" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1038" name="Property19_BodyDimensionProportionalScaling" fullname="SpiderIKSystemProperties.Property19_BodyDimensionProportionalScaling" methodname="Property19_BodyDimensionProportionalScaling" classname="SpiderIKSystemProperties" runstate="Runnable" seed="909304139" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.001033" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1039" name="Property20_LegPositionRotationConsistency" fullname="SpiderIKSystemProperties.Property20_LegPositionRotationConsistency" methodname="Property20_LegPositionRotationConsistency" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1614205908" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.001445" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1042" name="RebuildLegData_CreatesCorrectLegCount" fullname="SpiderIKSystemProperties.RebuildLegData_CreatesCorrectLegCount" methodname="RebuildLegData_CreatesCorrectLegCount" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1010714934" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.000368" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1041" name="SetConfiguration_AppliesConfiguration" fullname="SpiderIKSystemProperties.SetConfiguration_AppliesConfiguration" methodname="SetConfiguration_AppliesConfiguration" classname="SpiderIKSystemProperties" runstate="Runnable" seed="39605228" result="Passed" start-time="2025-11-29 09:51:12Z" end-time="2025-11-29 09:51:12Z" duration="0.000845" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

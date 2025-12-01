@@ -1,0 +1,17 @@
+{
+    "baseVerticalKick": 3.5,
+    "maxAccumulatedVertical": 12.0,
+    "baseHorizontalKick": 0.8,
+    "horizontalSpread": 2.0,
+    "weaponKickbackDistance": 0.08,
+    "weaponRotationKick": 5.0,
+    "recoverySpeed": 12.0,
+    "verticalVariationMin": 0.75,
+    "verticalVariationMax": 1.25,
+    "noiseScale": 0.6,
+    "compensationMultiplier": 1.8,
+    "maxCompensationRate": 2.5,
+    "shakeIntensity": 0.03,
+    "shakeFrequency": 30.0,
+    "pathFollowStrength": 0.4
+}

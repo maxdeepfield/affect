@@ -10,25 +10,6 @@ public class WeaponController : MonoBehaviour
         FullAutomatic
     }
 
-    [System.Serializable]
-    private class RecoilSettings
-    {
-        [Tooltip("Rotation kick in degrees applied upward per shot.")]
-        public float rotationKick = 15f;
-        [Tooltip("Camera pitch recoil in degrees per shot.")]
-        public float cameraRecoilAmount = 15f;
-        [Tooltip("Weapon moves back on fire; higher = stronger kick.")]
-        public float positionKick = 0.1f;
-        [Tooltip("Seconds to return from recoil to neutral.")]
-        public float recoveryDuration = 0.1f;
-        [Tooltip("Random sideways recoil range (+/-) in degrees.")]
-        public float sidewaysKick = 2f;
-        [Tooltip("Enable camera pitch recoil")]
-        public bool useCameraRecoil = true;
-        [Tooltip("Maximum accumulated camera recoil in degrees")]
-        public float maxAccumulatedRecoil = 45f;
-    }
-
     [Header("Shooting Settings")]
     [SerializeField] private FireMode fireMode = FireMode.FullAutomatic;
     [SerializeField] private float fireRate = 0.5f;
@@ -36,7 +17,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float damage = 20f;
     [SerializeField] private float impactForce = 50f;
     [SerializeField] private LayerMask hitMask = ~0;
-    [SerializeField] private RecoilSettings recoil = new RecoilSettings();
+
+    [Header("Recoil System")]
+    [Tooltip("Reference to the RecoilSystem component. If not set, will attempt to find one.")]
+    [SerializeField] private RecoilSystem recoilSystem;
 
     [Header("Transforms & FX")]
     [SerializeField] private Transform weaponTransform;
@@ -52,10 +36,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject bulletHolePrefab;
     [SerializeField] private ReticleFeedback reticleFeedback;
 
-    [Header("Camera Kick")]
-    [SerializeField] private float cameraShakeAmount = 0.1f;
-    [SerializeField] private float cameraShakeDuration = 0.1f;
-
     [Header("Weapon Sway Settings")]
     [SerializeField] private float swayAmount = 0.02f;
     [SerializeField] private float swaySmoothness = 4f;
@@ -64,6 +44,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float bobbingSpeed = 14f;
     [SerializeField] private float bobbingAmount = 0.05f;
 
+    [Header("Audio")]
+    [SerializeField] private WeaponSounds weaponSounds;
+
     private float timer;
     private Vector3 targetWeaponPosition;
     private Vector3 recoilOffset;
@@ -71,7 +54,6 @@ public class WeaponController : MonoBehaviour
     private float nextFireTime;
     private Quaternion originalWeaponRotation;
     private Vector3 originalWeaponPosition;
-    private Vector3 originalCameraPosition;
 
     private PlayerInputHandler inputHandler;
     private CharacterController characterController;
@@ -85,6 +67,16 @@ public class WeaponController : MonoBehaviour
         cameraTransform = GetComponentInChildren<Camera>()?.transform;
         mouseLook = GetComponent<MouseLook>();
 
+        // Find RecoilSystem if not assigned
+        if (recoilSystem == null)
+        {
+            recoilSystem = GetComponent<RecoilSystem>();
+            if (recoilSystem == null)
+            {
+                recoilSystem = GetComponentInChildren<RecoilSystem>();
+            }
+        }
+
         if (weaponTransform == null && cameraTransform != null)
         {
             weaponTransform = cameraTransform.Find("Weapon");
@@ -96,38 +88,24 @@ public class WeaponController : MonoBehaviour
             originalWeaponPosition = weaponTransform.localPosition;
         }
 
-        if (cameraTransform != null)
-        {
-            originalCameraPosition = cameraTransform.localPosition;
-        }
-
         if (mouseLook != null)
         {
             mouseLook.recoilPitchOffset = 0f;
+        }
+
+        // Find WeaponSounds if not assigned
+        if (weaponSounds == null)
+        {
+            weaponSounds = GetComponent<WeaponSounds>();
         }
     }
 
     private void Update()
     {
         HandleShooting();
-
-        if (mouseLook != null)
-        {
-            mouseLook.recoilPitchOffset = 0f;
-        }
-
-        Vector3 swayPosition = HandleWeaponSway();
-        Vector3 bobPosition = HandleBobbing();
-
-        targetWeaponPosition = originalWeaponPosition + swayPosition + bobPosition + recoilOffset;
-
-        if (weaponTransform != null)
-        {
-            weaponTransform.localPosition = Vector3.Lerp(weaponTransform.localPosition, targetWeaponPosition, Time.deltaTime * swaySmoothness);
-        }
     }
 
-    private Vector3 HandleWeaponSway()
+    public Vector3 HandleWeaponSway()
     {
         if (weaponTransform == null || inputHandler == null) return Vector3.zero;
 
@@ -142,7 +120,7 @@ public class WeaponController : MonoBehaviour
         return new Vector3(moveX, moveY, 0f);
     }
 
-    private Vector3 HandleBobbing()
+    public Vector3 HandleBobbing()
     {
         if (characterController == null) return Vector3.zero;
 
@@ -190,6 +168,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+
     private void Shoot()
     {
         if (muzzleFlashPrefab != null && muzzlePosition != null)
@@ -210,9 +189,16 @@ public class WeaponController : MonoBehaviour
             FireHitscan(cameraTransform.position, cameraTransform.forward);
         }
 
-        if (cameraTransform != null)
+        // Apply recoil using the new RecoilSystem
+        if (recoilSystem != null)
         {
-            StartCoroutine(ApplyCameraShake());
+            recoilSystem.ApplyRecoil();
+        }
+
+        // Play fire sound
+        if (weaponSounds != null)
+        {
+            weaponSounds.PlayFireSound();
         }
 
         EjectShell();
@@ -242,26 +228,6 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private IEnumerator ApplyCameraShake()
-    {
-        float elapsed = 0f;
-
-        while (elapsed < cameraShakeDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / cameraShakeDuration;
-
-            float offsetY = Mathf.PerlinNoise(0f, Time.time * 10f) * 2f - 1f;
-            Vector3 shake = new Vector3(0f, offsetY, 0f) * cameraShakeAmount * (1f - t);
-
-            cameraTransform.localPosition = originalCameraPosition + shake;
-
-            yield return null;
-        }
-
-        cameraTransform.localPosition = originalCameraPosition;
-    }
-
     private void EjectShell()
     {
         if (shellPrefab == null || shellEjectPort == null) return;
@@ -274,5 +240,14 @@ public class WeaponController : MonoBehaviour
             rb.AddTorque(Random.insideUnitSphere * shellEjectTorque, ForceMode.Impulse);
         }
         Destroy(shell, shellLifetime > 0f ? shellLifetime : 1f);
+    }
+
+    /// <summary>
+    /// Gets or sets the RecoilSystem reference.
+    /// </summary>
+    public RecoilSystem RecoilSystem
+    {
+        get => recoilSystem;
+        set => recoilSystem = value;
     }
 }

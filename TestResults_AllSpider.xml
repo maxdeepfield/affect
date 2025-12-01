@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="76" result="Passed" total="76" passed="76" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0,4040743">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="76" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.404074" total="76" passed="76" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1091" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="76" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.397016" total="76" passed="76" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4416" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="CameraShakerProperties" fullname="CameraShakerProperties" classname="CameraShakerProperties" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.030719" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1005" name="DisabledCameraShaker_ReturnsZeroShake" fullname="CameraShakerProperties.DisabledCameraShaker_ReturnsZeroShake" methodname="DisabledCameraShaker_ReturnsZeroShake" classname="CameraShakerProperties" runstate="Runnable" seed="1352396360" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.011526" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="OnRecoilApplied_UpdatesRecoilState" fullname="CameraShakerProperties.OnRecoilApplied_UpdatesRecoilState" methodname="OnRecoilApplied_UpdatesRecoilState" classname="CameraShakerProperties" runstate="Runnable" seed="1247703414" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001020" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="Property10_ShakeProportionalToRecoilMagnitude" fullname="CameraShakerProperties.Property10_ShakeProportionalToRecoilMagnitude" methodname="Property10_ShakeProportionalToRecoilMagnitude" classname="CameraShakerProperties" runstate="Runnable" seed="1752735293" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001982" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="Property11_ShakeDirectionFollowsRecoilPath" fullname="CameraShakerProperties.Property11_ShakeDirectionFollowsRecoilPath" methodname="Property11_ShakeDirectionFollowsRecoilPath" classname="CameraShakerProperties" runstate="Runnable" seed="185442562" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001902" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="Property12_ActiveShakeProducesNonZeroOutput" fullname="CameraShakerProperties.Property12_ActiveShakeProducesNonZeroOutput" methodname="Property12_ActiveShakeProducesNonZeroOutput" classname="CameraShakerProperties" runstate="Runnable" seed="1899023272" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001029" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="Reset_ClearsAllState" fullname="CameraShakerProperties.Reset_ClearsAllState" methodname="Reset_ClearsAllState" classname="CameraShakerProperties" runstate="Runnable" seed="133531592" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002187" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="DamageProperties" fullname="DamageProperties" classname="DamageProperties" runstate="Runnable" testcasecount="8" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.009225" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1016" name="DestroyedSegments_ReduceActiveBoneCount" fullname="DamageProperties.DestroyedSegments_ReduceActiveBoneCount" methodname="DestroyedSegments_ReduceActiveBoneCount" classname="DamageProperties" runstate="Runnable" seed="107848336" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000482" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1014" name="ExcessiveDamage_ClampsToZero" fullname="DamageProperties.ExcessiveDamage_ClampsToZero" methodname="ExcessiveDamage_ClampsToZero" classname="DamageProperties" runstate="Runnable" seed="95782303" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000388" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="InvalidSegmentIndex_NoException" fullname="DamageProperties.InvalidSegmentIndex_NoException" methodname="InvalidSegmentIndex_NoException" classname="DamageProperties" runstate="Runnable" seed="35956379" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000662" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="MultipleDamage_Accumulates" fullname="DamageProperties.MultipleDamage_Accumulates" methodname="MultipleDamage_Accumulates" classname="DamageProperties" runstate="Runnable" seed="1470452219" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000253" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="PartialDamage_SegmentRemainsActive" fullname="DamageProperties.PartialDamage_SegmentRemainsActive" methodname="PartialDamage_SegmentRemainsActive" classname="DamageProperties" runstate="Runnable" seed="1748326350" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000152" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="Property23_SegmentDamageTracking" fullname="DamageProperties.Property23_SegmentDamageTracking" methodname="Property23_SegmentDamageTracking" classname="DamageProperties" runstate="Runnable" seed="728089904" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000664" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Property24_SegmentDetachmentThreshold" fullname="DamageProperties.Property24_SegmentDetachmentThreshold" methodname="Property24_SegmentDetachmentThreshold" classname="DamageProperties" runstate="Runnable" seed="2013410548" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000522" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="Property25_IKChainRecalculationAfterDamage" fullname="DamageProperties.Property25_IKChainRecalculationAfterDamage" methodname="Property25_IKChainRecalculationAfterDamage" classname="DamageProperties" runstate="Runnable" seed="1687723646" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.003632" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1017" name="GaitProperties" fullname="GaitProperties" classname="GaitProperties" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.011696" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1018" name="Property5_GaitAlternationInvariant" fullname="GaitProperties.Property5_GaitAlternationInvariant" methodname="Property5_GaitAlternationInvariant" classname="GaitProperties" runstate="Runnable" seed="1312943583" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.008009" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1019" name="Property6_StepThresholdTriggering" fullname="GaitProperties.Property6_StepThresholdTriggering" methodname="Property6_StepThresholdTriggering" classname="GaitProperties" runstate="Runnable" seed="195484789" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001174" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1020" name="Property7_DiagonalGroupAssignment" fullname="GaitProperties.Property7_DiagonalGroupAssignment" methodname="Property7_DiagonalGroupAssignment" classname="GaitProperties" runstate="Runnable" seed="845569859" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001004" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1021" name="HitReactionProperties" fullname="HitReactionProperties" classname="HitReactionProperties" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.006747" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1027" name="ApplyConfiguration_SetsAllParameters" fullname="HitReactionProperties.ApplyConfiguration_SetsAllParameters" methodname="ApplyConfiguration_SetsAllParameters" classname="HitReactionProperties" runstate="Runnable" seed="2146210241" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000950" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1024" name="BelowThreshold_NoReaction" fullname="HitReactionProperties.BelowThreshold_NoReaction" methodname="BelowThreshold_NoReaction" classname="HitReactionProperties" runstate="Runnable" seed="1835647738" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000611" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1026" name="DisabledReactor_NoResponse" fullname="HitReactionProperties.DisabledReactor_NoResponse" methodname="DisabledReactor_NoResponse" classname="HitReactionProperties" runstate="Runnable" seed="380107764" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000395" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1025" name="Impact_TriggersScuttle" fullname="HitReactionProperties.Impact_TriggersScuttle" methodname="Impact_TriggersScuttle" classname="HitReactionProperties" runstate="Runnable" seed="90648981" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000558" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1022" name="Property21_HitImpulseApplication" fullname="HitReactionProperties.Property21_HitImpulseApplication" methodname="Property21_HitImpulseApplication" classname="HitReactionProperties" runstate="Runnable" seed="2092284435" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000755" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="Property22_VelocityClamping" fullname="HitReactionProperties.Property22_VelocityClamping" methodname="Property22_VelocityClamping" classname="HitReactionProperties" runstate="Runnable" seed="1336846741" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000844" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1028" name="VelocityBelowMax_NotClamped" fullname="HitReactionProperties.VelocityBelowMax_NotClamped" methodname="VelocityBelowMax_NotClamped" classname="HitReactionProperties" runstate="Runnable" seed="239315794" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000320" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1029" name="IKSolverProperties" fullname="IKSolverProperties" classname="IKSolverProperties" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.014640" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1030" name="Property1_IKSolutionAccuracy" fullname="IKSolverProperties.Property1_IKSolutionAccuracy" methodname="Property1_IKSolutionAccuracy" classname="IKSolverProperties" runstate="Runnable" seed="809807990" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.005677" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1031" name="Property2_IKReachExtension" fullname="IKSolverProperties.Property2_IKReachExtension" methodname="Property2_IKReachExtension" classname="IKSolverProperties" runstate="Runnable" seed="1337465296" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.003509" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1032" name="Property3_KneeBendDirectionInvariant" fullname="IKSolverProperties.Property3_KneeBendDirectionInvariant" methodname="Property3_KneeBendDirectionInvariant" classname="IKSolverProperties" runstate="Runnable" seed="1931778109" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.003938" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1033" name="MouseTrackerProperties" fullname="MouseTrackerProperties" classname="MouseTrackerProperties" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.011613" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1037" name="DisabledMouseTracker_ReturnsBaseRecoveryRate" fullname="MouseTrackerProperties.DisabledMouseTracker_ReturnsBaseRecoveryRate" methodname="DisabledMouseTracker_ReturnsBaseRecoveryRate" classname="MouseTrackerProperties" runstate="Runnable" seed="1818955581" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.004167" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1034" name="Property7_MouseCompensationReducesRecoil" fullname="MouseTrackerProperties.Property7_MouseCompensationReducesRecoil" methodname="Property7_MouseCompensationReducesRecoil" classname="MouseTrackerProperties" runstate="Runnable" seed="1036891391" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001589" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1035" name="Property8_CompensationEffectivenessClamped" fullname="MouseTrackerProperties.Property8_CompensationEffectivenessClamped" methodname="Property8_CompensationEffectivenessClamped" classname="MouseTrackerProperties" runstate="Runnable" seed="1664431354" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001527" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1036" name="Property9_ZeroInputYieldsBaseRecovery" fullname="MouseTrackerProperties.Property9_ZeroInputYieldsBaseRecovery" methodname="Property9_ZeroInputYieldsBaseRecovery" classname="MouseTrackerProperties" runstate="Runnable" seed="2025057641" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001361" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1038" name="Reset_ClearsAllState" fullname="MouseTrackerProperties.Reset_ClearsAllState" methodname="Reset_ClearsAllState" classname="MouseTrackerProperties" runstate="Runnable" seed="1055945525" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000915" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1039" name="RecoilRandomizerProperties" fullname="RecoilRandomizerProperties" classname="RecoilRandomizerProperties" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.006033" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1042" name="DisabledRandomizer_ReturnsBaseValues" fullname="RecoilRandomizerProperties.DisabledRandomizer_ReturnsBaseValues" methodname="DisabledRandomizer_ReturnsBaseValues" classname="RecoilRandomizerProperties" runstate="Runnable" seed="7925201" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000732" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1040" name="Property4_RandomizerOutputWithinConfiguredBounds" fullname="RecoilRandomizerProperties.Property4_RandomizerOutputWithinConfiguredBounds" methodname="Property4_RandomizerOutputWithinConfiguredBounds" classname="RecoilRandomizerProperties" runstate="Runnable" seed="437951647" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000938" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1041" name="Property5_RandomizerProducesVariation" fullname="RecoilRandomizerProperties.Property5_RandomizerProducesVariation" methodname="Property5_RandomizerProducesVariation" classname="RecoilRandomizerProperties" runstate="Runnable" seed="312779231" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000810" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1043" name="Reset_ClearsShotCounter" fullname="RecoilRandomizerProperties.Reset_ClearsShotCounter" methodname="Reset_ClearsShotCounter" classname="RecoilRandomizerProperties" runstate="Runnable" seed="1242888844" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000351" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1044" name="RecoilSystemProperties" fullname="RecoilSystemProperties" classname="RecoilSystemProperties" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.089083" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1045" name="Property1_RecoilKickWithinBounds" fullname="RecoilSystemProperties.Property1_RecoilKickWithinBounds" methodname="Property1_RecoilKickWithinBounds" classname="RecoilSystemProperties" runstate="Runnable" seed="582243521" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.004135" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1048" name="Property13_GracefulModuleDegradation" fullname="RecoilSystemProperties.Property13_GracefulModuleDegradation" methodname="Property13_GracefulModuleDegradation" classname="RecoilSystemProperties" runstate="Runnable" seed="287944483" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.072036" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1049" name="Property14_WeaponTransformReflectsRecoil" fullname="RecoilSystemProperties.Property14_WeaponTransformReflectsRecoil" methodname="Property14_WeaponTransformReflectsRecoil" classname="RecoilSystemProperties" runstate="Runnable" seed="166797800" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001383" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1050" name="Property15_WeaponTransformRecovery" fullname="RecoilSystemProperties.Property15_WeaponTransformRecovery" methodname="Property15_WeaponTransformRecovery" classname="RecoilSystemProperties" runstate="Runnable" seed="1957436081" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.003713" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1046" name="Property2_AccumulatedRecoilClampedToMaximum" fullname="RecoilSystemProperties.Property2_AccumulatedRecoilClampedToMaximum" methodname="Property2_AccumulatedRecoilClampedToMaximum" classname="RecoilSystemProperties" runstate="Runnable" seed="344345895" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002461" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1047" name="Property3_RecoilRecoveryOverTime" fullname="RecoilSystemProperties.Property3_RecoilRecoveryOverTime" methodname="Property3_RecoilRecoveryOverTime" classname="RecoilSystemProperties" runstate="Runnable" seed="1078105261" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.003089" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1080" name="SerializationProperties" fullname="SerializationProperties" classname="SerializationProperties" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.066298" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1084" name="FromJson_RestoresAllFields" fullname="SerializationProperties.FromJson_RestoresAllFields" methodname="FromJson_RestoresAllFields" classname="SerializationProperties" runstate="Runnable" seed="884333090" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000771" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1082" name="Property16_InvalidJsonReturnsDefaultConfiguration" fullname="SerializationProperties.Property16_InvalidJsonReturnsDefaultConfiguration" methodname="Property16_InvalidJsonReturnsDefaultConfiguration" classname="SerializationProperties" runstate="Runnable" seed="1329228510" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.058445" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON must represent an object type.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+]]></output>
+        </test-case>
+        <test-case id="1081" name="Property6_ConfigurationRoundTripSerialization" fullname="SerializationProperties.Property6_ConfigurationRoundTripSerialization" methodname="Property6_ConfigurationRoundTripSerialization" classname="SerializationProperties" runstate="Runnable" seed="1961161420" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002565" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1083" name="ToJson_ProducesValidJsonFormat" fullname="SerializationProperties.ToJson_ProducesValidJsonFormat" methodname="ToJson_ProducesValidJsonFormat" classname="SerializationProperties" runstate="Runnable" seed="817355896" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002388" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1051" name="SpiderIKSystemProperties" fullname="SpiderIKSystemProperties" classname="SpiderIKSystemProperties" runstate="Runnable" testcasecount="8" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.080555" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1057" name="Initialize_DiscoversModules" fullname="SpiderIKSystemProperties.Initialize_DiscoversModules" methodname="Initialize_DiscoversModules" classname="SpiderIKSystemProperties" runstate="Runnable" seed="987773694" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002070" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[SpiderIKSystem] Discovered 2 modules
+]]></output>
+        </test-case>
+        <test-case id="1052" name="Property15_GracefulModuleDegradation" fullname="SpiderIKSystemProperties.Property15_GracefulModuleDegradation" methodname="Property15_GracefulModuleDegradation" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1429244339" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.071091" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+[SpiderIKSystem] Discovered 3 modules
+]]></output>
+        </test-case>
+        <test-case id="1053" name="Property17_VelocityBasedStrideScaling" fullname="SpiderIKSystemProperties.Property17_VelocityBasedStrideScaling" methodname="Property17_VelocityBasedStrideScaling" classname="SpiderIKSystemProperties" runstate="Runnable" seed="2135662283" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001134" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1054" name="Property18_StrideDirectionAlignment" fullname="SpiderIKSystemProperties.Property18_StrideDirectionAlignment" methodname="Property18_StrideDirectionAlignment" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1458647134" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000782" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1055" name="Property19_BodyDimensionProportionalScaling" fullname="SpiderIKSystemProperties.Property19_BodyDimensionProportionalScaling" methodname="Property19_BodyDimensionProportionalScaling" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1552213748" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001002" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1056" name="Property20_LegPositionRotationConsistency" fullname="SpiderIKSystemProperties.Property20_LegPositionRotationConsistency" methodname="Property20_LegPositionRotationConsistency" classname="SpiderIKSystemProperties" runstate="Runnable" seed="678435228" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001111" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1059" name="RebuildLegData_CreatesCorrectLegCount" fullname="SpiderIKSystemProperties.RebuildLegData_CreatesCorrectLegCount" methodname="RebuildLegData_CreatesCorrectLegCount" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1761756578" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000353" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1058" name="SetConfiguration_AppliesConfiguration" fullname="SpiderIKSystemProperties.SetConfiguration_AppliesConfiguration" methodname="SetConfiguration_AppliesConfiguration" classname="SpiderIKSystemProperties" runstate="Runnable" seed="1869187469" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000333" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1085" name="SpiderSerializationProperties" fullname="SpiderSerializationProperties" classname="SpiderSerializationProperties" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.046851" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1090" name="Clone_CreatesIndependentCopy" fullname="SpiderSerializationProperties.Clone_CreatesIndependentCopy" methodname="Clone_CreatesIndependentCopy" classname="SpiderSerializationProperties" runstate="Runnable" seed="513715353" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000244" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1089" name="FromJson_RestoresAllFields" fullname="SpiderSerializationProperties.FromJson_RestoresAllFields" methodname="FromJson_RestoresAllFields" classname="SpiderSerializationProperties" runstate="Runnable" seed="568458053" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000606" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1087" name="Property16_InvalidJsonReturnsDefaultConfiguration" fullname="SpiderSerializationProperties.Property16_InvalidJsonReturnsDefaultConfiguration" methodname="Property16_InvalidJsonReturnsDefaultConfiguration" classname="SpiderSerializationProperties" runstate="Runnable" seed="884484897" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.041628" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON must represent an object type.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Empty or null JSON provided, returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[IKConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+]]></output>
+        </test-case>
+        <test-case id="1086" name="Property4_ConfigurationRoundTripSerialization" fullname="SpiderSerializationProperties.Property4_ConfigurationRoundTripSerialization" methodname="Property4_ConfigurationRoundTripSerialization" classname="SpiderSerializationProperties" runstate="Runnable" seed="1893590895" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002063" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1088" name="ToJson_ProducesValidJsonFormat" fullname="SpiderSerializationProperties.ToJson_ProducesValidJsonFormat" methodname="ToJson_ProducesValidJsonFormat" classname="SpiderSerializationProperties" runstate="Runnable" seed="226628145" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000259" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1060" name="StabilizationProperties" fullname="StabilizationProperties" classname="StabilizationProperties" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.007764" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1067" name="ApplyConfiguration_SetsAllParameters" fullname="StabilizationProperties.ApplyConfiguration_SetsAllParameters" methodname="ApplyConfiguration_SetsAllParameters" classname="StabilizationProperties" runstate="Runnable" seed="1679540879" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000746" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1066" name="DisabledStabilizer_DoesNotApplyForces" fullname="StabilizationProperties.DisabledStabilizer_DoesNotApplyForces" methodname="DisabledStabilizer_DoesNotApplyForces" classname="StabilizationProperties" runstate="Runnable" seed="216924336" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001052" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1061" name="Property10_BodyHeightMaintenance" fullname="StabilizationProperties.Property10_BodyHeightMaintenance" methodname="Property10_BodyHeightMaintenance" classname="StabilizationProperties" runstate="Runnable" seed="561577250" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000756" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1062" name="Property11_StabilizationForceDirection" fullname="StabilizationProperties.Property11_StabilizationForceDirection" methodname="Property11_StabilizationForceDirection" classname="StabilizationProperties" runstate="Runnable" seed="1155948297" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000988" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1063" name="Property12_StabilizationDamping" fullname="StabilizationProperties.Property12_StabilizationDamping" methodname="Property12_StabilizationDamping" classname="StabilizationProperties" runstate="Runnable" seed="357051862" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000738" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1065" name="StabilizeHeight_AppliesForceAlongSurfaceNormal" fullname="StabilizationProperties.StabilizeHeight_AppliesForceAlongSurfaceNormal" methodname="StabilizeHeight_AppliesForceAlongSurfaceNormal" classname="StabilizationProperties" runstate="Runnable" seed="1336477568" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000852" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1064" name="StabilizeOrientation_AppliesTorqueTowardTarget" fullname="StabilizationProperties.StabilizeOrientation_AppliesTorqueTowardTarget" methodname="StabilizeOrientation_AppliesTorqueTowardTarget" classname="StabilizationProperties" runstate="Runnable" seed="1785631762" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000523" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1068" name="StepAnimationProperties" fullname="StepAnimationProperties" classname="StepAnimationProperties" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.005545" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1073" name="ApplyConfiguration_SetsAllParameters" fullname="StepAnimationProperties.ApplyConfiguration_SetsAllParameters" methodname="ApplyConfiguration_SetsAllParameters" classname="StepAnimationProperties" runstate="Runnable" seed="274296882" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000390" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1074" name="ArcHeight_ScalesWithStepHeight" fullname="StepAnimationProperties.ArcHeight_ScalesWithStepHeight" methodname="ArcHeight_ScalesWithStepHeight" classname="StepAnimationProperties" runstate="Runnable" seed="1301717473" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000369" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1071" name="ArcHeight_ZeroAtStartAndEnd" fullname="StepAnimationProperties.ArcHeight_ZeroAtStartAndEnd" methodname="ArcHeight_ZeroAtStartAndEnd" classname="StepAnimationProperties" runstate="Runnable" seed="934911694" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000273" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1075" name="CalculateStepPosition_ClampsProgress" fullname="StepAnimationProperties.CalculateStepPosition_ClampsProgress" methodname="CalculateStepPosition_ClampsProgress" classname="StepAnimationProperties" runstate="Runnable" seed="925720030" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000578" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1069" name="Property13_StepArcMaximumAtMidpoint" fullname="StepAnimationProperties.Property13_StepArcMaximumAtMidpoint" methodname="Property13_StepArcMaximumAtMidpoint" classname="StepAnimationProperties" runstate="Runnable" seed="971581952" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000746" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1070" name="Property14_StepCompletionAccuracy" fullname="StepAnimationProperties.Property14_StepCompletionAccuracy" methodname="Property14_StepCompletionAccuracy" classname="StepAnimationProperties" runstate="Runnable" seed="1593998731" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000640" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1072" name="StepPosition_AtStartEqualsStartPosition" fullname="StepAnimationProperties.StepPosition_AtStartEqualsStartPosition" methodname="StepPosition_AtStartEqualsStartPosition" classname="StepAnimationProperties" runstate="Runnable" seed="447291372" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000287" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1076" name="TerrainProperties" fullname="TerrainProperties" classname="TerrainProperties" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.006383" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1077" name="Property8_SurfaceDetectionPositioning" fullname="TerrainProperties.Property8_SurfaceDetectionPositioning" methodname="Property8_SurfaceDetectionPositioning" classname="TerrainProperties" runstate="Runnable" seed="1610022343" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.002936" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1078" name="Property9_SurfaceOrientationAlignment" fullname="TerrainProperties.Property9_SurfaceOrientationAlignment" methodname="Property9_SurfaceOrientationAlignment" classname="TerrainProperties" runstate="Runnable" seed="1780258773" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.001416" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1079" name="SurfaceClassification_CorrectlyClassifiesSurfaces" fullname="TerrainProperties.SurfaceClassification_CorrectlyClassifiesSurfaces" methodname="SurfaceClassification_CorrectlyClassifiesSurfaces" classname="TerrainProperties" runstate="Runnable" seed="1265434375" result="Passed" start-time="2025-11-29 14:07:01Z" end-time="2025-11-29 14:07:01Z" duration="0.000520" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

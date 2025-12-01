@@ -4,13 +4,14 @@ using UnityEditor;
 #endif
 
 /// <summary>
-/// Spider IK System v3.0 - COMPLETE REWRITE for proper spider locomotion
+/// Spider IK System v3.1 - Legacy wrapper for SpiderIKSystem
+/// Maintains backward compatibility with existing prefabs while using the new modular system.
 /// </summary>
 [ExecuteAlways]
 public class SPIDER_IK_LEGS_v3 : MonoBehaviour
 {
     [Header("=== VERSION ===")]
-    public string version = "v3.0 - COMPLETE SPIDER REWRITE";
+    public string version = "v3.1 - SpiderIKSystem Wrapper";
     
     [Header("=== LEG SETUP ===")]
     public Transform[] legRoots;
@@ -18,7 +19,7 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
     [Header("=== SPIDER PROPORTIONS ===")]
     [Range(0.1f, 1f)] public float bodyHeight = 0.3f;
     [Range(0.2f, 1f)] public float legLength = 0.6f;
-    [Range(0.2f, 0.8f)] public float hipRatio = 0.5f; // Portion of total leg length assigned to hip -> knee
+    [Range(0.2f, 0.8f)] public float hipRatio = 0.5f;
     [Range(0.5f, 2f)] public float legSpread = 0.8f;
     [Tooltip("Horizontal distance from body center to leg roots. Set to 0 to keep current offsets.")]
     [Range(0f, 2f)] public float hipOriginDistance = 0f;
@@ -32,7 +33,15 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
     
     [Header("=== GROUND ===")]
     public LayerMask groundLayers = -1;
+
+    [Header("=== NEW SYSTEM ===")]
+    [Tooltip("Use the new modular SpiderIKSystem instead of legacy code")]
+    public bool useNewSystem = false;
     
+    // New system reference (auto-created when useNewSystem is true)
+    private SpiderIKSystem _spiderSystem;
+    
+    // Legacy data (used when useNewSystem is false)
     internal LegData[] legs;
     private Vector3 lastBodyPos;
     private Vector3 bodyVelocity;
@@ -49,21 +58,100 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
         public int legIndex;
         public int diagonalGroup;
     }
+
+    /// <summary>
+    /// Gets or creates the SpiderIKSystem for the new modular approach.
+    /// </summary>
+    public SpiderIKSystem SpiderSystem
+    {
+        get
+        {
+            if (_spiderSystem == null)
+            {
+                _spiderSystem = GetComponent<SpiderIKSystem>();
+            }
+            return _spiderSystem;
+        }
+    }
+
+    /// <summary>
+    /// Syncs legacy parameters to the new IKConfiguration.
+    /// </summary>
+    public void SyncToNewSystem()
+    {
+        if (SpiderSystem == null) return;
+
+        var config = SpiderSystem.Config ?? new IKConfiguration();
+        
+        config.legCount = legRoots?.Length ?? 4;
+        config.boneCount = 3;
+        config.bodyHeight = bodyHeight;
+        config.legLength = legLength;
+        config.hipRatio = hipRatio;
+        config.legSpread = legSpread;
+        config.stepThreshold = stepThreshold;
+        config.stepHeight = stepHeight;
+        config.stepSpeed = stepSpeed;
+        config.strideForward = strideForward;
+        config.strideVelocityScale = strideVelocityScale;
+        config.groundLayers = groundLayers;
+
+        SpiderSystem.Config = config;
+        SpiderSystem.RebuildLegData();
+    }
+
+    /// <summary>
+    /// Syncs new system parameters back to legacy fields.
+    /// </summary>
+    public void SyncFromNewSystem()
+    {
+        if (SpiderSystem?.Config == null) return;
+
+        var config = SpiderSystem.Config;
+        
+        bodyHeight = config.bodyHeight;
+        legLength = config.legLength;
+        hipRatio = config.hipRatio;
+        legSpread = config.legSpread;
+        stepThreshold = config.stepThreshold;
+        stepHeight = config.stepHeight;
+        stepSpeed = config.stepSpeed;
+        strideForward = config.strideForward;
+        strideVelocityScale = config.strideVelocityScale;
+        groundLayers = config.groundLayers;
+    }
     
     void Start()
     {
-        RebuildLegData();
+        if (useNewSystem)
+        {
+            SetupNewSystem();
+        }
+        else
+        {
+            RebuildLegData();
+        }
     }
 
     void OnValidate()
     {
         hipRatio = Mathf.Clamp(hipRatio, 0.05f, 0.95f);
         hipOriginDistance = Mathf.Max(hipOriginDistance, 0f);
-        RebuildLegData();
+        
+        if (useNewSystem && SpiderSystem != null)
+        {
+            SyncToNewSystem();
+        }
+        else
+        {
+            RebuildLegData();
+        }
     }
     
     void Update()
     {
+        if (useNewSystem) return; // New system handles its own updates
+        
         float dt = Time.deltaTime;
         if (dt > 0.001f)
         {
@@ -75,6 +163,12 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
     
     public void RebuildLegData()
     {
+        if (useNewSystem && SpiderSystem != null)
+        {
+            SyncToNewSystem();
+            return;
+        }
+        
         ApplyLegDimensions();
         InitLegs();
         lastBodyPos = transform.position;
@@ -82,6 +176,8 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
     
     void LateUpdate()
     {
+        if (useNewSystem) return; // New system handles its own updates
+        
         if (legs == null) return;
         
         if (activeStepGroup != -1 && !IsGroupStepping(activeStepGroup))
@@ -93,6 +189,77 @@ public class SPIDER_IK_LEGS_v3 : MonoBehaviour
         {
             UpdateLeg(legs[i]);
         }
+    }
+
+    /// <summary>
+    /// Sets up the new SpiderIKSystem with all required modules.
+    /// </summary>
+    private void SetupNewSystem()
+    {
+        // Ensure SpiderIKSystem exists
+        if (_spiderSystem == null)
+        {
+            _spiderSystem = GetComponent<SpiderIKSystem>();
+            if (_spiderSystem == null)
+            {
+                _spiderSystem = gameObject.AddComponent<SpiderIKSystem>();
+            }
+        }
+
+        // Sync parameters
+        SyncToNewSystem();
+
+        // Ensure all modules exist
+        EnsureModule<LegSolver>();
+        EnsureModule<GaitController>();
+        EnsureModule<TerrainAdapter>();
+        EnsureModule<BodyStabilizer>();
+        EnsureModule<StepAnimator>();
+        EnsureModule<HitReactor>();
+        EnsureModule<LegDamageHandler>();
+    }
+
+    private T EnsureModule<T>() where T : Component
+    {
+        T module = GetComponent<T>();
+        if (module == null)
+        {
+            module = gameObject.AddComponent<T>();
+        }
+        return module;
+    }
+
+    /// <summary>
+    /// Migrates this legacy spider to use the new system.
+    /// </summary>
+    public void MigrateToNewSystem()
+    {
+        useNewSystem = true;
+        SetupNewSystem();
+        
+        // Migrate SpiderHitReaction settings to HitReactor
+        var oldHitReaction = GetComponent<SpiderHitReaction>();
+        var newHitReactor = GetComponent<HitReactor>();
+        if (oldHitReaction != null && newHitReactor != null)
+        {
+            newHitReactor.HitImpulse = oldHitReaction.hitImpulse;
+            newHitReactor.ScuttleForce = oldHitReaction.scuttleForce;
+            newHitReactor.ScuttleTime = oldHitReaction.scuttleTime;
+            newHitReactor.MaxHorizontalSpeed = oldHitReaction.maxHorizontalSpeed;
+        }
+
+        // Migrate SpiderBodyStabilizer settings to BodyStabilizer
+        var oldStabilizer = GetComponent<SpiderBodyStabilizer>();
+        var newStabilizer = GetComponent<BodyStabilizer>();
+        if (oldStabilizer != null && newStabilizer != null)
+        {
+            newStabilizer.UprightStrength = oldStabilizer.uprightStrength;
+            newStabilizer.UprightDamping = oldStabilizer.uprightDamping;
+            newStabilizer.HeightStrength = oldStabilizer.heightStrength;
+            newStabilizer.HeightDamping = oldStabilizer.heightDamping;
+        }
+
+        Debug.Log("[SPIDER_IK_LEGS_v3] Migrated to new SpiderIKSystem");
     }
 
     void ApplyLegDimensions()
@@ -406,6 +573,40 @@ public class SpiderIKv3Editor : Editor
         
         var spider = (SPIDER_IK_LEGS_v3)target;
 
+        // Migration section
+        EditorGUILayout.Space(6);
+        EditorGUILayout.LabelField("System Migration", EditorStyles.boldLabel);
+        
+        if (spider.useNewSystem)
+        {
+            EditorGUILayout.HelpBox("Using new modular SpiderIKSystem", MessageType.Info);
+            if (GUILayout.Button("Open SpiderIKSystem Inspector", GUILayout.Height(22)))
+            {
+                var system = spider.GetComponent<SpiderIKSystem>();
+                if (system != null)
+                {
+                    Selection.activeObject = system;
+                }
+            }
+            if (GUILayout.Button("Sync Parameters to New System", GUILayout.Height(22)))
+            {
+                spider.SyncToNewSystem();
+                EditorUtility.SetDirty(spider);
+            }
+        }
+        else
+        {
+            EditorGUILayout.HelpBox("Using legacy v3 system. Consider migrating to the new modular system.", MessageType.Warning);
+            GUI.backgroundColor = Color.green;
+            if (GUILayout.Button("Migrate to New SpiderIKSystem", GUILayout.Height(26)))
+            {
+                Undo.RecordObject(spider, "Migrate to New System");
+                spider.MigrateToNewSystem();
+                EditorUtility.SetDirty(spider);
+            }
+            GUI.backgroundColor = Color.white;
+        }
+
         EditorGUILayout.Space(6);
         EditorGUILayout.LabelField("Create", EditorStyles.boldLabel);
         if (GUILayout.Button("Create SPIDER (Walker)", GUILayout.Height(26)))
@@ -436,7 +637,10 @@ public class SpiderIKv3Editor : Editor
             EditorUtility.SetDirty(spider);
         }
 
-        DrawHitReaction(spider);
+        if (!spider.useNewSystem)
+        {
+            DrawHitReaction(spider);
+        }
         
         EditorGUILayout.Space(10);
     }
@@ -666,6 +870,7 @@ public class SpiderIKv3Editor : Editor
 
 /// <summary>
 /// Self-contained leg connector for v3 that stretches/rotates a cylinder between two joints.
+/// Supports variable bone counts (1-3) and works with both legacy and new LegData structures.
 /// </summary>
 [ExecuteAlways]
 public class LegConnectorV3 : MonoBehaviour
@@ -677,6 +882,14 @@ public class LegConnectorV3 : MonoBehaviour
     [Header("Visual Settings")]
     [Range(0.01f, 0.2f)] public float radius = 0.05f;
     public Color color = Color.gray;
+    
+    [Header("Damage Visualization")]
+    [Tooltip("Color when segment is damaged")]
+    public Color damagedColor = Color.red;
+    [Tooltip("Reference to LegData for damage state (optional)")]
+    public global::LegData legData;
+    [Tooltip("Segment index in the leg (0=hip, 1=knee, 2=foot)")]
+    public int segmentIndex = 0;
 
     private Renderer _renderer;
     private Material _material;
@@ -698,6 +911,16 @@ public class LegConnectorV3 : MonoBehaviour
     {
         if (startJoint == null || endJoint == null) return;
 
+        // Check if segment is active (for damage system)
+        if (legData != null && !legData.IsSegmentActive(segmentIndex))
+        {
+            // Hide this visual if segment is destroyed
+            if (_renderer != null) _renderer.enabled = false;
+            return;
+        }
+        
+        if (_renderer != null) _renderer.enabled = true;
+
         Vector3 startPos = startJoint.position;
         Vector3 endPos = endJoint.position;
         Vector3 direction = endPos - startPos;
@@ -710,28 +933,66 @@ public class LegConnectorV3 : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(direction.normalized, up) * Quaternion.Euler(90f, 0f, 0f);
         transform.localScale = new Vector3(radius * 2f, distance * 0.5f, radius * 2f);
 
-        if (_renderer != null)
+        UpdateMaterial();
+    }
+
+    void UpdateMaterial()
+    {
+        if (_renderer == null) return;
+        
+        if (_material == null)
         {
-            if (_material == null)
-            {
 #if UNITY_EDITOR
-                _material = _renderer.sharedMaterial;
+            _material = _renderer.sharedMaterial;
 #else
-                _material = _renderer.material;
+            _material = _renderer.material;
 #endif
-            }
-            if (_material != null)
+        }
+        
+        if (_material == null) return;
+
+        // Determine color based on damage state
+        Color targetColor = color;
+        if (legData != null)
+        {
+            float healthPercent = legData.GetSegmentHealth(segmentIndex) / 100f;
+            if (healthPercent < 1f)
             {
-                _material.color = color;
+                targetColor = Color.Lerp(damagedColor, color, healthPercent);
             }
         }
+        
+        _material.color = targetColor;
+    }
+
+    /// <summary>
+    /// Sets up this connector for a specific leg segment.
+    /// </summary>
+    /// <param name="start">Start joint transform</param>
+    /// <param name="end">End joint transform</param>
+    /// <param name="data">LegData for damage tracking (optional)</param>
+    /// <param name="segment">Segment index (0=hip, 1=knee, 2=foot)</param>
+    public void Setup(Transform start, Transform end, global::LegData data = null, int segment = 0)
+    {
+        startJoint = start;
+        endJoint = end;
+        legData = data;
+        segmentIndex = segment;
     }
 
     void OnDrawGizmos()
     {
         if (startJoint != null && endJoint != null)
         {
-            Gizmos.color = Color.magenta;
+            // Show damage state in gizmos
+            if (legData != null && !legData.IsSegmentActive(segmentIndex))
+            {
+                Gizmos.color = Color.gray;
+            }
+            else
+            {
+                Gizmos.color = Color.magenta;
+            }
             Gizmos.DrawLine(startJoint.position, endJoint.position);
         }
     }

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0,2483187">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="25" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.248319" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1031" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="25" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.235288" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30576" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="CameraShakerProperties" fullname="CameraShakerProperties" classname="CameraShakerProperties" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.056811" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1005" name="DisabledCameraShaker_ReturnsZeroShake" fullname="CameraShakerProperties.DisabledCameraShaker_ReturnsZeroShake" methodname="DisabledCameraShaker_ReturnsZeroShake" classname="CameraShakerProperties" runstate="Runnable" seed="909720015" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.017223" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="OnRecoilApplied_UpdatesRecoilState" fullname="CameraShakerProperties.OnRecoilApplied_UpdatesRecoilState" methodname="OnRecoilApplied_UpdatesRecoilState" classname="CameraShakerProperties" runstate="Runnable" seed="535100914" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.002072" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="Property10_ShakeProportionalToRecoilMagnitude" fullname="CameraShakerProperties.Property10_ShakeProportionalToRecoilMagnitude" methodname="Property10_ShakeProportionalToRecoilMagnitude" classname="CameraShakerProperties" runstate="Runnable" seed="1603835386" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.003975" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="Property11_ShakeDirectionFollowsRecoilPath" fullname="CameraShakerProperties.Property11_ShakeDirectionFollowsRecoilPath" methodname="Property11_ShakeDirectionFollowsRecoilPath" classname="CameraShakerProperties" runstate="Runnable" seed="1909980789" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.011728" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="Property12_ActiveShakeProducesNonZeroOutput" fullname="CameraShakerProperties.Property12_ActiveShakeProducesNonZeroOutput" methodname="Property12_ActiveShakeProducesNonZeroOutput" classname="CameraShakerProperties" runstate="Runnable" seed="1894097837" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001130" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="Reset_ClearsAllState" fullname="CameraShakerProperties.Reset_ClearsAllState" methodname="Reset_ClearsAllState" classname="CameraShakerProperties" runstate="Runnable" seed="1821565096" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.002507" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="MouseTrackerProperties" fullname="MouseTrackerProperties" classname="MouseTrackerProperties" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.012617" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1012" name="DisabledMouseTracker_ReturnsBaseRecoveryRate" fullname="MouseTrackerProperties.DisabledMouseTracker_ReturnsBaseRecoveryRate" methodname="DisabledMouseTracker_ReturnsBaseRecoveryRate" classname="MouseTrackerProperties" runstate="Runnable" seed="768218373" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.005044" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1009" name="Property7_MouseCompensationReducesRecoil" fullname="MouseTrackerProperties.Property7_MouseCompensationReducesRecoil" methodname="Property7_MouseCompensationReducesRecoil" classname="MouseTrackerProperties" runstate="Runnable" seed="541089443" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001654" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1010" name="Property8_CompensationEffectivenessClamped" fullname="MouseTrackerProperties.Property8_CompensationEffectivenessClamped" methodname="Property8_CompensationEffectivenessClamped" classname="MouseTrackerProperties" runstate="Runnable" seed="2054937207" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001423" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1011" name="Property9_ZeroInputYieldsBaseRecovery" fullname="MouseTrackerProperties.Property9_ZeroInputYieldsBaseRecovery" methodname="Property9_ZeroInputYieldsBaseRecovery" classname="MouseTrackerProperties" runstate="Runnable" seed="1070282144" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001354" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1013" name="Reset_ClearsAllState" fullname="MouseTrackerProperties.Reset_ClearsAllState" methodname="Reset_ClearsAllState" classname="MouseTrackerProperties" runstate="Runnable" seed="2074447004" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001013" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1014" name="RecoilRandomizerProperties" fullname="RecoilRandomizerProperties" classname="RecoilRandomizerProperties" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.006458" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1017" name="DisabledRandomizer_ReturnsBaseValues" fullname="RecoilRandomizerProperties.DisabledRandomizer_ReturnsBaseValues" methodname="DisabledRandomizer_ReturnsBaseValues" classname="RecoilRandomizerProperties" runstate="Runnable" seed="1066666371" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001056" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="Property4_RandomizerOutputWithinConfiguredBounds" fullname="RecoilRandomizerProperties.Property4_RandomizerOutputWithinConfiguredBounds" methodname="Property4_RandomizerOutputWithinConfiguredBounds" classname="RecoilRandomizerProperties" runstate="Runnable" seed="1105649987" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001475" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="Property5_RandomizerProducesVariation" fullname="RecoilRandomizerProperties.Property5_RandomizerProducesVariation" methodname="Property5_RandomizerProducesVariation" classname="RecoilRandomizerProperties" runstate="Runnable" seed="536934959" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001177" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="Reset_ClearsShotCounter" fullname="RecoilRandomizerProperties.Reset_ClearsShotCounter" methodname="Reset_ClearsShotCounter" classname="RecoilRandomizerProperties" runstate="Runnable" seed="1560381785" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.000572" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1019" name="RecoilSystemProperties" fullname="RecoilSystemProperties" classname="RecoilSystemProperties" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.092984" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1020" name="Property1_RecoilKickWithinBounds" fullname="RecoilSystemProperties.Property1_RecoilKickWithinBounds" methodname="Property1_RecoilKickWithinBounds" classname="RecoilSystemProperties" runstate="Runnable" seed="1398756176" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.004302" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="Property13_GracefulModuleDegradation" fullname="RecoilSystemProperties.Property13_GracefulModuleDegradation" methodname="Property13_GracefulModuleDegradation" classname="RecoilSystemProperties" runstate="Runnable" seed="20249456" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.077116" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+[MouseTracker] PlayerInputHandler not found. Mouse compensation will be disabled.
+]]></output>
+        </test-case>
+        <test-case id="1024" name="Property14_WeaponTransformReflectsRecoil" fullname="RecoilSystemProperties.Property14_WeaponTransformReflectsRecoil" methodname="Property14_WeaponTransformReflectsRecoil" classname="RecoilSystemProperties" runstate="Runnable" seed="1406191756" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001336" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1025" name="Property15_WeaponTransformRecovery" fullname="RecoilSystemProperties.Property15_WeaponTransformRecovery" methodname="Property15_WeaponTransformRecovery" classname="RecoilSystemProperties" runstate="Runnable" seed="35315816" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.003229" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="Property2_AccumulatedRecoilClampedToMaximum" fullname="RecoilSystemProperties.Property2_AccumulatedRecoilClampedToMaximum" methodname="Property2_AccumulatedRecoilClampedToMaximum" classname="RecoilSystemProperties" runstate="Runnable" seed="1399033417" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.001961" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1022" name="Property3_RecoilRecoveryOverTime" fullname="RecoilSystemProperties.Property3_RecoilRecoveryOverTime" methodname="Property3_RecoilRecoveryOverTime" classname="RecoilSystemProperties" runstate="Runnable" seed="465458622" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.002344" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1026" name="SerializationProperties" fullname="SerializationProperties" classname="SerializationProperties" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.062204" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1030" name="FromJson_RestoresAllFields" fullname="SerializationProperties.FromJson_RestoresAllFields" methodname="FromJson_RestoresAllFields" classname="SerializationProperties" runstate="Runnable" seed="390558339" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.000480" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1028" name="Property16_InvalidJsonReturnsDefaultConfiguration" fullname="SerializationProperties.Property16_InvalidJsonReturnsDefaultConfiguration" methodname="Property16_InvalidJsonReturnsDefaultConfiguration" classname="SerializationProperties" runstate="Runnable" seed="767432134" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.054047" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON must represent an object type.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Missing a name for object member.. Returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Empty or null JSON provided, returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+[RecoilConfiguration] Failed to deserialize JSON: JSON parse error: Invalid value.. Returning default configuration.
+]]></output>
+        </test-case>
+        <test-case id="1027" name="Property6_ConfigurationRoundTripSerialization" fullname="SerializationProperties.Property6_ConfigurationRoundTripSerialization" methodname="Property6_ConfigurationRoundTripSerialization" classname="SerializationProperties" runstate="Runnable" seed="1563211319" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.002754" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1029" name="ToJson_ProducesValidJsonFormat" fullname="SerializationProperties.ToJson_ProducesValidJsonFormat" methodname="ToJson_ProducesValidJsonFormat" classname="SerializationProperties" runstate="Runnable" seed="310676831" result="Passed" start-time="2025-11-28 14:04:14Z" end-time="2025-11-28 14:04:14Z" duration="0.002977" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,47 @@
+{
+    "baseVerticalKick": 2.0,
+    "maxAccumulatedVertical": 15.0,
+    "baseHorizontalKick": 0.5,
+    "horizontalSpread": 2.0,
+    "weaponKickbackDistance": 0.05000000074505806,
+    "weaponRotationKick": 3.0,
+    "recoverySpeed": 8.0,
+    "recoveryCurve": {
+        "serializedVersion": "2",
+        "m_Curve": [
+            {
+                "serializedVersion": "3",
+                "time": 0.0,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "tangentMode": 0,
+                "weightedMode": 0,
+                "inWeight": 0.0,
+                "outWeight": 0.0
+            },
+            {
+                "serializedVersion": "3",
+                "time": 1.0,
+                "value": 0.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "tangentMode": 0,
+                "weightedMode": 0,
+                "inWeight": 0.0,
+                "outWeight": 0.0
+            }
+        ],
+        "m_PreInfinity": 2,
+        "m_PostInfinity": 2,
+        "m_RotationOrder": 4
+    },
+    "verticalVariationMin": 0.800000011920929,
+    "verticalVariationMax": 1.2000000476837159,
+    "noiseScale": 0.5,
+    "compensationMultiplier": 1.5,
+    "maxCompensationRate": 2.0,
+    "shakeIntensity": 0.019999999552965165,
+    "shakeFrequency": 25.0,
+    "pathFollowStrength": 0.5
+}

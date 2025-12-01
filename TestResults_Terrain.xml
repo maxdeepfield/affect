@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0,0404417">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="39" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.040442" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1049" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="39" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.033959" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1480" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1034" name="TerrainProperties" fullname="TerrainProperties" classname="TerrainProperties" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.031855" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1035" name="Property8_SurfaceDetectionPositioning" fullname="TerrainProperties.Property8_SurfaceDetectionPositioning" methodname="Property8_SurfaceDetectionPositioning" classname="TerrainProperties" runstate="Runnable" seed="1983771993" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.017165" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1036" name="Property9_SurfaceOrientationAlignment" fullname="TerrainProperties.Property9_SurfaceOrientationAlignment" methodname="Property9_SurfaceOrientationAlignment" classname="TerrainProperties" runstate="Runnable" seed="1619283052" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.001499" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1037" name="SurfaceClassification_CorrectlyClassifiesSurfaces" fullname="TerrainProperties.SurfaceClassification_CorrectlyClassifiesSurfaces" methodname="SurfaceClassification_CorrectlyClassifiesSurfaces" classname="TerrainProperties" runstate="Runnable" seed="1310991852" result="Passed" start-time="2025-11-29 07:48:57Z" end-time="2025-11-29 07:48:57Z" duration="0.001280" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

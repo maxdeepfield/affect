@@ -1,0 +1,33 @@
+{
+    "legCount": 8,
+    "boneCount": 3,
+    "bodyRadius": 0.5,
+    "bodyHeight": 0.3,
+    "bodyToLegRatio": 1.8,
+    "dimensionScale": 1.0,
+    "legLength": 1.0,
+    "hipRatio": 0.45,
+    "legSpread": 0.9,
+    "stepThreshold": 0.5,
+    "stepHeight": 0.12,
+    "stepSpeed": 5.0,
+    "strideForward": 0.35,
+    "strideVelocityScale": 0.45,
+    "uprightStrength": 18.0,
+    "uprightDamping": 5.0,
+    "heightStrength": 25.0,
+    "heightDamping": 5.0,
+    "surfaceTransitionSpeed": 6.0,
+    "hitImpulse": 4.0,
+    "scuttleForce": 20.0,
+    "scuttleTime": 0.8,
+    "maxHorizontalSpeed": 5.0,
+    "segmentHealth": 60.0,
+    "enableLegDamage": true,
+    "groundLayers": {
+        "serializedVersion": "2",
+        "m_Bits": 4294967295
+    },
+    "raycastUp": 1.5,
+    "raycastDown": 3.5
+}

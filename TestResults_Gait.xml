@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0,0470637">
+  <test-suite type="TestSuite" id="1000" name="AFFECT-2025-10-11" fullname="AFFECT-2025-10-11" runstate="Runnable" testcasecount="36" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.047064" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1045" name="Assembly-CSharp-Editor.dll" fullname="C:/Users/Ubuntu/Desktop/_DEV/AFFECT-2025-10-11/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="36" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.038243" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18080" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1008" name="GaitProperties" fullname="GaitProperties" classname="GaitProperties" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.035919" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1009" name="Property5_GaitAlternationInvariant" fullname="GaitProperties.Property5_GaitAlternationInvariant" methodname="Property5_GaitAlternationInvariant" classname="GaitProperties" runstate="Runnable" seed="204069544" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.020501" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Property6_StepThresholdTriggering" fullname="GaitProperties.Property6_StepThresholdTriggering" methodname="Property6_StepThresholdTriggering" classname="GaitProperties" runstate="Runnable" seed="938734635" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.001291" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="Property7_DiagonalGroupAssignment" fullname="GaitProperties.Property7_DiagonalGroupAssignment" methodname="Property7_DiagonalGroupAssignment" classname="GaitProperties" runstate="Runnable" seed="2105728891" result="Passed" start-time="2025-11-29 07:40:10Z" end-time="2025-11-29 07:40:10Z" duration="0.004203" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Ubuntu/AppData/LocalLow/DefaultCompany/AFFECT-2025-10-11\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
 
+    [Header("Audio")]
+    [SerializeField] private FootstepSounds footstepSounds;
+
     private CharacterController characterController;
     private PlayerInputHandler inputHandler;
     private float verticalVelocity = 0f;
@@ -19,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         inputHandler = GetComponent<PlayerInputHandler>();
+        
+        // Find FootstepSounds if not assigned
+        if (footstepSounds == null)
+        {
+            footstepSounds = GetComponent<FootstepSounds>();
+        }
     }
 
     void Update()
@@ -59,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && inputHandler.JumpInput)
         {
             verticalVelocity = jumpForce;
+            
+            // Play jump sound
+            if (footstepSounds != null)
+            {
+                footstepSounds.PlayJumpSound();
+            }
         }
     }
 
