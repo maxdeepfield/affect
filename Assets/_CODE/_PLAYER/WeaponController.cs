@@ -21,6 +21,8 @@ public class WeaponController : MonoBehaviour
     [Header("Recoil System")]
     [Tooltip("Reference to the RecoilSystem component. If not set, will attempt to find one.")]
     [SerializeField] private RecoilSystem recoilSystem;
+    [Tooltip("Reference to the ReloadAnimation component. If not set, will attempt to find one.")]
+    [SerializeField] private ReloadAnimation reloadAnimation;
 
     [Header("Transforms & FX")]
     [SerializeField] private Transform weaponTransform;
@@ -35,6 +37,12 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float shellLifetime = 5f;
     [SerializeField] private GameObject bulletHolePrefab;
     [SerializeField] private ReticleFeedback reticleFeedback;
+
+    [Header("Impact Particles")]
+    [SerializeField] private int impactParticleCount = 20;
+    [SerializeField] private float impactParticleSpeed = 5f;
+    [SerializeField] private float impactParticleDuration = 0.5f;
+    [SerializeField] private Color impactParticleColor = new Color(1f, 0.8f, 0.2f, 1f);
 
     [Header("Weapon Sway Settings")]
     [SerializeField] private float swayAmount = 0.02f;
@@ -100,6 +108,16 @@ public class WeaponController : MonoBehaviour
             }
         }
 
+        // Find ReloadAnimation if not assigned
+        if (reloadAnimation == null)
+        {
+            reloadAnimation = GetComponent<ReloadAnimation>();
+            if (reloadAnimation == null)
+            {
+                reloadAnimation = GetComponentInChildren<ReloadAnimation>();
+            }
+        }
+
         if (weaponTransform == null && cameraTransform != null)
         {
             weaponTransform = cameraTransform.Find("Weapon");
@@ -150,6 +168,13 @@ public class WeaponController : MonoBehaviour
         if (weaponTransform != null)
         {
             Vector3 targetPosition = isAiming ? originalWeaponPosition + aimPositionOffset : originalWeaponPosition;
+            // If reloading via RecoilSystem, include reload position while aiming so the animation is visible while scoped
+            if (isAiming && recoilSystem != null)
+            {
+                targetPosition += recoilSystem.CurrentReloadPositionOffset;
+            }
+
+            // If using RecoilSystem for positional updates when not aiming, still allow the controller to set aim position
             weaponTransform.localPosition = Vector3.Lerp(weaponTransform.localPosition, targetPosition, Time.deltaTime * aimPositionSpeed);
         }
     }
@@ -294,11 +319,71 @@ public class WeaponController : MonoBehaviour
                 reticleFeedback?.RegisterHit(killed);
             }
 
+            // Spawn impact particles at hit location
+            SpawnImpactParticles(hitInfo.point, hitInfo.normal);
+
             if (bulletHolePrefab != null)
             {
                 Instantiate(bulletHolePrefab, hitInfo.point + hitInfo.normal * 0.001f, Quaternion.LookRotation(hitInfo.normal));
             }
         }
+    }
+
+    private void SpawnImpactParticles(Vector3 position, Vector3 normal)
+    {
+        // Create empty GameObject for particle system
+        GameObject particleGO = new GameObject("ImpactParticles");
+        particleGO.transform.position = position;
+        particleGO.transform.rotation = Quaternion.LookRotation(normal);
+
+        // Add ParticleSystem component
+        ParticleSystem ps = particleGO.AddComponent<ParticleSystem>();
+        // Stop before tweaking duration to avoid play-while-configuring warnings
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        ParticleSystemRenderer renderer = particleGO.GetComponent<ParticleSystemRenderer>();
+
+        // Configure main module
+        ParticleSystem.MainModule main = ps.main;
+        main.playOnAwake = false;
+        main.duration = impactParticleDuration;
+        main.loop = false;
+        main.startLifetime = impactParticleDuration;
+        main.startSpeed = impactParticleSpeed;
+        main.startColor = impactParticleColor;
+        main.maxParticles = impactParticleCount;
+
+        // Configure emission
+        ParticleSystem.EmissionModule emission = ps.emission;
+        emission.rateOverTime = 0f;
+        emission.SetBursts(new[] { new ParticleSystem.Burst(0f, impactParticleCount) });
+
+        // Configure shape (burst outward from normal)
+        ParticleSystem.ShapeModule shape = ps.shape;
+        shape.enabled = true;
+        shape.shapeType = ParticleSystemShapeType.Sphere;
+        shape.radius = 0.1f;
+
+        // Configure velocity over lifetime (spread cone)
+        ParticleSystem.VelocityOverLifetimeModule velModule = ps.velocityOverLifetime;
+        velModule.enabled = true;
+        velModule.x = new ParticleSystem.MinMaxCurve(-impactParticleSpeed * 0.5f, impactParticleSpeed * 0.5f);
+        velModule.y = new ParticleSystem.MinMaxCurve(impactParticleSpeed * 0.3f, impactParticleSpeed);
+        velModule.z = new ParticleSystem.MinMaxCurve(-impactParticleSpeed * 0.5f, impactParticleSpeed * 0.5f);
+
+        // Configure size over lifetime (fade out)
+        ParticleSystem.SizeOverLifetimeModule sizeModule = ps.sizeOverLifetime;
+        sizeModule.enabled = true;
+        sizeModule.size = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(
+            new Keyframe(0f, 1f),
+            new Keyframe(1f, 0f)
+        ));
+
+        // Minimal renderer
+        renderer.renderMode = ParticleSystemRenderMode.Billboard;
+
+        // Play and auto-destroy
+        ps.Play();
+        Destroy(particleGO, impactParticleDuration + 0.1f);
     }
 
     private void EjectShell()
@@ -338,12 +423,44 @@ public class WeaponController : MonoBehaviour
 
         weaponSounds?.PlayReloadSound();
 
+        // Start reload animation if available
+        if (recoilSystem != null)
+        {
+            // Use RecoilSystem's integrated reload animation
+            Vector3 posOffset = recoilSystem.Config.reloadPositionOffset;
+            Quaternion rotOffset = Quaternion.Euler(recoilSystem.Config.reloadRotationPitch, recoilSystem.Config.reloadRotationYaw, 0f);
+            AnimationCurve curve = recoilSystem.Config.reloadAnimationCurve;
+            recoilSystem.StartReloadAnimation(posOffset, rotOffset, reloadDuration, curve);
+        }
+        else if (reloadAnimation != null)
+        {
+            // Backwards compatibility - fall back to local ReloadAnimation if RecoilSystem is not present
+            reloadAnimation.SetReloadParameters(
+                recoilSystem != null ? recoilSystem.Config.reloadRotationPitch : -15f,
+                recoilSystem != null ? recoilSystem.Config.reloadRotationYaw : 25f,
+                recoilSystem != null ? recoilSystem.Config.reloadPositionOffset : new Vector3(0.03f, -0.02f, 0.08f),
+                reloadDuration,
+                recoilSystem != null ? recoilSystem.Config.reloadAnimationCurve : AnimationCurve.EaseInOut(0, 0, 1, 1)
+            );
+            reloadAnimation.StartReload(reloadDuration);
+        }
+
         if (reloadDuration > 0f)
             yield return new WaitForSeconds(reloadDuration);
 
         weaponAmmo?.TryReload();
         isReloading = false;
         reloadRoutine = null;
+
+        // End reload animation via RecoilSystem if present
+        if (recoilSystem != null)
+        {
+            recoilSystem.EndReloadAnimation();
+        }
+        else if (reloadAnimation != null)
+        {
+            reloadAnimation.EndReload();
+        }
     }
 
     /// <summary>

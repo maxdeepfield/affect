@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 /// <summary>
-/// Simple HUD updater for health, ammo, and keycards using standard UI Text components.
+/// Simple HUD updater for health, ammo, and keycard level using standard UI Text components.
 /// </summary>
 public class PlayerHUD : MonoBehaviour
 {
+    public static PlayerHUD Instance { get; private set; }
+
     [Header("Data Sources")]
     [SerializeField] private Health health;
     [SerializeField] private WeaponAmmo weaponAmmo;
@@ -20,23 +21,33 @@ public class PlayerHUD : MonoBehaviour
     [Header("Formatting")]
     [SerializeField] private string healthFormat = "HP {0}/{1}";
     [SerializeField] private string ammoFormat = "Ammo {0}/{1}";
-    [SerializeField] private string keycardFormat = "Keycards: {0}";
+    [SerializeField] private string keycardFormat = "Keycard L{0}";
+    [SerializeField] private string noKeycardText = "Keycard: none";
     [SerializeField] private string infiniteSymbol = "INF";
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple PlayerHUD instances found. Using the first one.");
+        }
+        else
+        {
+            Instance = this;
+        }
+
         if (health == null)
             health = GetComponentInParent<Health>();
 
         if (weaponAmmo == null)
             weaponAmmo = GetComponentInParent<WeaponAmmo>();
 
-        if (playerInventory == null)
-            playerInventory = GetComponentInParent<PlayerInventory>();
+        EnsurePlayerInventoryReference();
     }
 
     private void OnEnable()
     {
+        EnsurePlayerInventoryReference();
         RegisterListeners();
         RefreshAll();
     }
@@ -44,6 +55,12 @@ public class PlayerHUD : MonoBehaviour
     private void OnDisable()
     {
         UnregisterListeners();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public void SetHealth(Health newHealth)
@@ -83,15 +100,15 @@ public class PlayerHUD : MonoBehaviour
         if (playerInventory == newInventory) return;
 
         if (playerInventory != null)
-            playerInventory.OnKeycardsChanged.RemoveListener(OnKeycardsChanged);
+            playerInventory.OnKeycardLevelChanged.RemoveListener(OnKeycardLevelChanged);
 
         playerInventory = newInventory;
 
         if (playerInventory != null)
-            playerInventory.OnKeycardsChanged.AddListener(OnKeycardsChanged);
+            playerInventory.OnKeycardLevelChanged.AddListener(OnKeycardLevelChanged);
 
         if (playerInventory != null)
-            OnKeycardsChanged(playerInventory.GetCollectedKeycards());
+            OnKeycardLevelChanged(playerInventory.KeycardLevel);
     }
 
     private void RegisterListeners()
@@ -103,7 +120,7 @@ public class PlayerHUD : MonoBehaviour
             weaponAmmo.AmmoChanged += OnAmmoChanged;
 
         if (playerInventory != null)
-            playerInventory.OnKeycardsChanged.AddListener(OnKeycardsChanged);
+            playerInventory.OnKeycardLevelChanged.AddListener(OnKeycardLevelChanged);
     }
 
     private void UnregisterListeners()
@@ -115,7 +132,7 @@ public class PlayerHUD : MonoBehaviour
             weaponAmmo.AmmoChanged -= OnAmmoChanged;
 
         if (playerInventory != null)
-            playerInventory.OnKeycardsChanged.RemoveListener(OnKeycardsChanged);
+            playerInventory.OnKeycardLevelChanged.RemoveListener(OnKeycardLevelChanged);
     }
 
     private void RefreshAll()
@@ -127,7 +144,7 @@ public class PlayerHUD : MonoBehaviour
             OnAmmoChanged(weaponAmmo.CurrentMagazine, weaponAmmo.ReserveAmmo, weaponAmmo.InfiniteReserve, weaponAmmo.InfiniteMagazine);
 
         if (playerInventory != null)
-            OnKeycardsChanged(playerInventory.GetCollectedKeycards());
+            OnKeycardLevelChanged(playerInventory.KeycardLevel);
     }
 
     private void OnHealthChanged(float current, float max)
@@ -147,11 +164,27 @@ public class PlayerHUD : MonoBehaviour
         ammoText.text = string.Format(ammoFormat, magazineValue, reserveValue);
     }
 
-    private void OnKeycardsChanged(HashSet<int> keycards)
+    private void OnKeycardLevelChanged(int level)
     {
         if (keycardText == null) return;
 
-        string keycardList = string.Join(", ", keycards);
-        keycardText.text = string.Format(keycardFormat, keycardList);
+        if (level <= 0)
+        {
+            keycardText.text = noKeycardText;
+            return;
+        }
+
+        keycardText.text = string.Format(keycardFormat, level);
     }
+
+    private void EnsurePlayerInventoryReference()
+    {
+        if (playerInventory != null) return;
+
+        playerInventory = GetComponentInParent<PlayerInventory>();
+        if (playerInventory == null)
+            playerInventory = PlayerInventory.Instance ?? FindObjectOfType<PlayerInventory>();
+    }
+
+    public TMP_Text KeycardText => keycardText;
 }

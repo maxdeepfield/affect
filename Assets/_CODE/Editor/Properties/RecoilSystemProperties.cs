@@ -59,7 +59,7 @@ public class RecoilSystemProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration config = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
             
             // Reset system with new config
             _recoilSystem.ResetRecoil();
@@ -109,7 +109,7 @@ public class RecoilSystemProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration config = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
             
             // Ensure reasonable max values for testing
             config.maxAccumulatedVertical = RecoilGenerators.RandomFloat(5f, 20f);
@@ -163,7 +163,7 @@ public class RecoilSystemProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration config = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
             config.recoverySpeed = RecoilGenerators.RandomFloat(1f, 20f);
 
             _recoilSystem.ResetRecoil();
@@ -206,6 +206,43 @@ public class RecoilSystemProperties
 
         Assert.AreEqual(0, failures,
             $"Property 3 failed {failures}/{PropertyTestIterations} times. Last failure: {lastFailureMessage}");
+    }
+
+    /// <summary>
+    /// **Feature: epic-recoil-system, Property X: Reload Animation Applied**
+    /// When StartReloadAnimation is invoked, the system SHALL apply position and rotation offsets from config
+    /// during the reload progression.
+    /// </summary>
+    [Test]
+    public void PropertyReloadAnimation_AppliesOffsets()
+    {
+        RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
+        config.reloadPositionOffset = new Vector3(0.03f, -0.02f, 0.08f);
+        config.reloadRotationPitch = -15f;
+        config.reloadRotationYaw = 25f;
+        config.reloadAnimationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
+        _recoilSystem.ResetRecoil();
+        _recoilSystem.SetConfiguration(config);
+
+        // Start reload
+        _recoilSystem.StartReloadAnimation(config.reloadPositionOffset, Quaternion.Euler(config.reloadRotationPitch, config.reloadRotationYaw, 0f), 0.1f, config.reloadAnimationCurve);
+
+        // Simulate a half-frame of update
+        _recoilSystem.SimulateUpdateForTesting(0.02f);
+
+        // Ensure reload offsets are non-zero
+        Assert.IsTrue(_recoilSystem.CurrentReloadPositionOffset.sqrMagnitude > 0f, "Reload position offset should have started to apply.");
+        Assert.IsTrue(Quaternion.Angle(_recoilSystem.CurrentReloadRotationOffset, Quaternion.identity) > 0f, "Reload rotation offset should have started to apply.");
+
+        // Simulate completion
+        _recoilSystem.SimulateUpdateForTesting(0.2f);
+        Assert.IsTrue(_recoilSystem.CurrentReloadPositionOffset.sqrMagnitude > 0f || !_recoilSystem.IsReloading, "Reload should have progressed or ended.");
+
+        // End reload and verify a reset
+        _recoilSystem.EndReloadAnimation();
+        Assert.AreEqual(Vector3.zero, _recoilSystem.CurrentReloadPositionOffset, "Reload position offset should be cleared after ending.");
+        Assert.AreEqual(Quaternion.identity, _recoilSystem.CurrentReloadRotationOffset, "Reload rotation offset should be cleared after ending.");
     }
 
     /// <summary>
@@ -316,7 +353,7 @@ public class RecoilSystemProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration config = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
             config.weaponKickbackDistance = RecoilGenerators.RandomFloat(0.01f, 0.2f);
             config.weaponRotationKick = RecoilGenerators.RandomFloat(1f, 10f);
 
@@ -384,7 +421,7 @@ public class RecoilSystemProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration config = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO config = RecoilGenerators.GenerateRecoilConfiguration();
             config.recoverySpeed = RecoilGenerators.RandomFloat(5f, 20f); // Ensure reasonable recovery
 
             _recoilSystem.ResetRecoil();

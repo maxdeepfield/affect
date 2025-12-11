@@ -1,0 +1,182 @@
+#pragma kernel GenerateGrass
+
+struct GrassData
+{
+    float4 row0;
+    float4 row1;
+    float4 row2;
+    float4 row3;
+    float4 color;
+};
+
+RWStructuredBuffer<GrassData> _GrassBuffer;
+Texture2D<float> _HeightMap;
+SamplerState sampler_HeightMap;
+
+float2 _TerrainSize;
+float2 _TerrainResolution;
+float _TerrainHeight;
+float _GrassVerticalOffset;
+float2 _GrassScaleRange;
+float2 _HeightRange;
+float _MaxSlope;
+float4 _ColorA;
+float4 _ColorB;
+float _ColorJitter;
+uint _GrassCount;
+uint _Seed;
+float4 _TerrainMatrixRow0;
+float4 _TerrainMatrixRow1;
+float4 _TerrainMatrixRow2;
+float4 _TerrainMatrixRow3;
+
+float hash(uint n)
+{
+    n = (n << 13U) ^ n;
+    n = n * (n * n * 15731U + 789221U) + 1376312589U;
+    return float(n & 0x7fffffffU) / float(0x7fffffff);
+}
+
+float3 hash3(uint n)
+{
+    return float3(hash(n), hash(n * 2654435761U), hash(n * 1597334677U));
+}
+
+float SampleHeight(float2 uv)
+{
+    return _HeightMap.SampleLevel(sampler_HeightMap, uv, 0) * _TerrainHeight;
+}
+
+float3 SampleNormal(float2 uv)
+{
+    float2 texelSize = 1.0 / _TerrainResolution;
+    
+    float hL = SampleHeight(uv - float2(texelSize.x, 0));
+    float hR = SampleHeight(uv + float2(texelSize.x, 0));
+    float hB = SampleHeight(uv - float2(0, texelSize.y));
+    float hF = SampleHeight(uv + float2(0, texelSize.y));
+    
+    float3 dx = float3(2.0 * texelSize.x * _TerrainSize.x, hR - hL, 0);
+    float3 dz = float3(0, hF - hB, 2.0 * texelSize.y * _TerrainSize.y);
+    
+    return normalize(cross(dz, dx));
+}
+
+float4 QuatFromAxisAngle(float3 axis, float angle)
+{
+    float s = sin(angle * 0.5);
+    return float4(axis * s, cos(angle * 0.5));
+}
+
+float4 QuatMul(float4 q1, float4 q2)
+{
+    return float4(
+        q1.w * q2.xyz + q2.w * q1.xyz + cross(q1.xyz, q2.xyz),
+        q1.w * q2.w - dot(q1.xyz, q2.xyz)
+    );
+}
+
+float4 QuatFromToRotation(float3 from, float3 to)
+{
+    float3 axis = cross(from, to);
+    float len = length(axis);
+    if (len < 0.0001)
+        return float4(0, 0, 0, 1);
+    axis /= len;
+    float angle = acos(clamp(dot(from, to), -1, 1));
+    return QuatFromAxisAngle(axis, angle);
+}
+
+float3x3 QuatToMatrix(float4 q)
+{
+    float x = q.x, y = q.y, z = q.z, w = q.w;
+    float x2 = x + x, y2 = y + y, z2 = z + z;
+    float xx = x * x2, xy = x * y2, xz = x * z2;
+    float yy = y * y2, yz = y * z2, zz = z * z2;
+    float wx = w * x2, wy = w * y2, wz = w * z2;
+    
+    return float3x3(
+        1 - (yy + zz), xy + wz, xz - wy,
+        xy - wz, 1 - (xx + zz), yz + wx,
+        xz + wy, yz - wx, 1 - (xx + yy)
+    );
+}
+
+float3 TransformPoint(float3 pos)
+{
+    float3 result;
+    result.x = dot(_TerrainMatrixRow0.xyz, pos) + _TerrainMatrixRow0.w;
+    result.y = dot(_TerrainMatrixRow1.xyz, pos) + _TerrainMatrixRow1.w;
+    result.z = dot(_TerrainMatrixRow2.xyz, pos) + _TerrainMatrixRow2.w;
+    return result;
+}
+
+[numthreads(256, 1, 1)]
+void GenerateGrass(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _GrassCount)
+        return;
+    
+    uint seed = _Seed + id.x;
+    float3 rnd = hash3(seed);
+    float3 rnd2 = hash3(seed + 12345U);
+    
+    float2 uv = rnd.xy;
+    
+    float h = SampleHeight(uv);
+    float normalizedH = h / max(_TerrainHeight, 0.001);
+    
+    bool valid = (normalizedH >= _HeightRange.x && normalizedH <= _HeightRange.y);
+    
+    float3 normal = SampleNormal(uv);
+    float slope = degrees(acos(dot(normal, float3(0, 1, 0))));
+    valid = valid && (slope <= _MaxSlope);
+    
+    float3 localPos = float3(
+        (uv.x - 0.5) * _TerrainSize.x,
+        h + _GrassVerticalOffset,
+        (uv.y - 0.5) * _TerrainSize.y
+    );
+    
+    float3 worldPos = TransformPoint(localPos);
+    
+    float scale = lerp(_GrassScaleRange.x, _GrassScaleRange.y, rnd.z);
+    
+    float4 normalRot = QuatFromToRotation(float3(0, 1, 0), normal);
+    float4 yRot = QuatFromAxisAngle(float3(0, 1, 0), rnd2.x * 6.28318);
+    float4 finalRot = QuatMul(normalRot, yRot);
+    
+    float3x3 rotMatrix = QuatToMatrix(finalRot);
+    
+    float4 baseColor = lerp(_ColorA, _ColorB, rnd2.y);
+    float jitter = (rnd2.z * 2 - 1) * _ColorJitter;
+    float4 finalColor = float4(
+        saturate(baseColor.r + jitter),
+        saturate(baseColor.g + jitter),
+        saturate(baseColor.b + jitter),
+        valid ? 1 : 0
+    );
+    
+    float3 scaleVec = float3(scale, scale, scale);
+    float3x3 scaledRot = float3x3(
+        rotMatrix[0] * scaleVec,
+        rotMatrix[1] * scaleVec,
+        rotMatrix[2] * scaleVec
+    );
+    
+    GrassData data;
+    data.row0 = float4(scaledRot[0], worldPos.x);
+    data.row1 = float4(scaledRot[1], worldPos.y);
+    data.row2 = float4(scaledRot[2], worldPos.z);
+    data.row3 = float4(0, 0, 0, 1);
+    data.color = finalColor;
+    
+    if (!valid)
+    {
+        data.row0 = float4(0, 0, 0, 0);
+        data.row1 = float4(0, 0, 0, 0);
+        data.row2 = float4(0, 0, 0, 0);
+    }
+    
+    _GrassBuffer[id.x] = data;
+}

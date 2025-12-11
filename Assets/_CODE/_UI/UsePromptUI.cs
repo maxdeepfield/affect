@@ -23,6 +23,10 @@ public class UsePromptUI : MonoBehaviour
     {
         if (promptText == null) return;
 
+        // Avoid overwriting the keycard inventory display if someone wired the same TMP to both.
+        if (PlayerHUD.Instance != null && PlayerHUD.Instance.KeycardText == promptText)
+            return;
+
         Usable usable = Usable.Current;
         if (usable != null)
         {

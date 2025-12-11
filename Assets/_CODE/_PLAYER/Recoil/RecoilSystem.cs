@@ -10,7 +10,7 @@ public class RecoilSystem : MonoBehaviour
     [Header("Configuration")]
     [Tooltip("Recoil configuration containing all parameters")]
     [SerializeField]
-    private RecoilConfiguration _config = new RecoilConfiguration();
+    private RecoilConfigurationSO _config;
 
     [Header("Transform References")]
     [Tooltip("Camera transform for rotation recoil")]
@@ -41,19 +41,31 @@ public class RecoilSystem : MonoBehaviour
     private Vector3 _originalWeaponPosition;
     private Quaternion _originalWeaponRotation;
     private bool _initialized;
+    // Reload animation state
+    private bool _isReloadingAnim;
+    private float _reloadTimer;
+    private float _reloadDuration;
+    private AnimationCurve _reloadCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    private Vector3 _reloadTargetPositionOffset = Vector3.zero;
+    private Quaternion _reloadTargetRotationOffset = Quaternion.identity;
 
     /// <summary>
     /// Gets or sets the recoil configuration.
     /// </summary>
-    public RecoilConfiguration Config
+    public RecoilConfigurationSO Config
     {
         get => _config;
         set
         {
-            _config = value ?? new RecoilConfiguration();
+            _config = value ?? ScriptableObject.CreateInstance<RecoilConfigurationSO>();
             UpdateModuleConfigurations();
         }
     }
+
+    /// <summary>
+    /// Gets whether the weapon is currently reloading.
+    /// </summary>
+    public bool IsReloading => _isReloadingAnim;
 
     /// <summary>
     /// Gets the current accumulated recoil (x = pitch/vertical, y = yaw/horizontal).
@@ -101,6 +113,9 @@ public class RecoilSystem : MonoBehaviour
         // Update all modules
         UpdateModules(deltaTime);
 
+        // Update reload animation state
+        UpdateReloadAnimation(deltaTime);
+
         // Apply recovery
         ApplyRecovery(deltaTime);
 
@@ -123,6 +138,12 @@ public class RecoilSystem : MonoBehaviour
         if (_initialized) return;
 
         _state = RecoilState.Default;
+        
+        // Ensure the configuration is set
+        if (_config == null)
+        {
+            _config = ScriptableObject.CreateInstance<RecoilConfigurationSO>();
+        }
 
         // Auto-discover transform references if not set
         if (_cameraTransform == null)
@@ -293,9 +314,9 @@ public class RecoilSystem : MonoBehaviour
         _state.currentPath = recoilKick.normalized;
 
         // Accumulate recoil with clamping
-        // _state.accumulatedRecoil += recoilKick;
-        // _state.accumulatedRecoil.x = Mathf.Clamp(_state.accumulatedRecoil.x, 0f, _config.maxAccumulatedVertical);
-        // _state.accumulatedRecoil.y = Mathf.Clamp(_state.accumulatedRecoil.y, -_config.horizontalSpread * 2f, _config.horizontalSpread * 2f);
+        _state.accumulatedRecoil += recoilKick;
+        _state.accumulatedRecoil.x = Mathf.Clamp(_state.accumulatedRecoil.x, 0f, _config.maxAccumulatedVertical);
+        _state.accumulatedRecoil.y = Mathf.Clamp(_state.accumulatedRecoil.y, -_config.horizontalSpread * 2f, _config.horizontalSpread * 2f);
 
         // Update shot count and timing
         _state.shotCount++;
@@ -345,7 +366,7 @@ public class RecoilSystem : MonoBehaviour
 
         // Apply recoil as pitch offset (vertical = pitch)
         // The MouseLook component will use this offset in its rotation calculation
-        // _mouseLook.recoilPitchOffset = _state.accumulatedRecoil.x;
+        _mouseLook.recoilPitchOffset = _state.accumulatedRecoil.x;
     }
 
     /// <summary>
@@ -410,8 +431,9 @@ public class RecoilSystem : MonoBehaviour
             }
 
             // Calculate target position and rotation
-            Vector3 targetPosition = _originalWeaponPosition + _state.weaponPositionOffset + swayPosition + bobPosition;
-            Quaternion targetRotation = _originalWeaponRotation * _state.weaponRotationOffset;
+            // Combine weapon recoil and reload offsets with sway and bobbing
+            Vector3 targetPosition = _originalWeaponPosition + _state.weaponPositionOffset + _state.reloadPositionOffset + swayPosition + bobPosition;
+            Quaternion targetRotation = _originalWeaponRotation * _state.reloadRotationOffset * _state.weaponRotationOffset;
 
             // Add camera shake offset if available
             if (_cameraShaker != null && _cameraShaker.IsEnabled)
@@ -426,9 +448,78 @@ public class RecoilSystem : MonoBehaviour
         else
         {
             // When aiming, only apply rotation, let WeaponController handle position
-            Quaternion targetRotation = _originalWeaponRotation * _state.weaponRotationOffset;
+            Quaternion targetRotation = _originalWeaponRotation * _state.reloadRotationOffset * _state.weaponRotationOffset;
             _weaponTransform.localRotation = Quaternion.Slerp(_weaponTransform.localRotation, targetRotation, _config.recoverySpeed * deltaTime);
         }
+    }
+
+    /// <summary>
+    /// Updates reload animation state and applies offsets to the recoil state.
+    /// </summary>
+    private void UpdateReloadAnimation(float deltaTime)
+    {
+        if (!_isReloadingAnim)
+        {
+            // Ensure any lingering values are reset
+            _state.reloadPositionOffset = Vector3.zero;
+            _state.reloadRotationOffset = Quaternion.identity;
+            return;
+        }
+
+        if (_reloadDuration <= 0f)
+        {
+            // Instant apply then finish
+            _state.reloadPositionOffset = _reloadTargetPositionOffset;
+            _state.reloadRotationOffset = _reloadTargetRotationOffset;
+            _isReloadingAnim = false;
+            return;
+        }
+
+        _reloadTimer += deltaTime;
+        float progress = Mathf.Clamp01(_reloadTimer / _reloadDuration);
+        float eval = _reloadCurve != null ? _reloadCurve.Evaluate(progress) : progress;
+
+        _state.reloadPositionOffset = Vector3.Lerp(Vector3.zero, _reloadTargetPositionOffset, eval);
+        _state.reloadRotationOffset = Quaternion.Slerp(Quaternion.identity, _reloadTargetRotationOffset, eval);
+
+        if (progress >= 1f)
+        {
+            // Finished - keep the final offset for a short moment and then reset via recovery or explicit end
+            _isReloadingAnim = false;
+        }
+    }
+
+    #endregion
+
+    #region Reload Animation API
+
+    /// <summary>
+    /// Starts a reload animation that will add local position / rotation offsets to the weapon transform.
+    /// Offsets are expressed in local weapon space (same space as _originalWeaponPosition/Rotation).
+    /// </summary>
+    /// <param name="targetPositionOffset">Local position offset</param>
+    /// <param name="targetRotationOffset">Local rotation offset</param>
+    /// <param name="duration">Duration of reload animation in seconds</param>
+    /// <param name="curve">AnimationCurve controlling the progression</param>
+    public void StartReloadAnimation(Vector3 targetPositionOffset, Quaternion targetRotationOffset, float duration, AnimationCurve curve = null)
+    {
+        _isReloadingAnim = true;
+        _reloadTimer = 0f;
+        _reloadDuration = duration > 0f ? duration : 0f;
+        _reloadCurve = curve ?? _config.reloadAnimationCurve;
+        _reloadTargetPositionOffset = targetPositionOffset;
+        _reloadTargetRotationOffset = targetRotationOffset;
+    }
+
+    /// <summary>
+    /// Ends the reload animation and clears offsets.
+    /// </summary>
+    public void EndReloadAnimation()
+    {
+        _isReloadingAnim = false;
+        _reloadTimer = 0f;
+        _state.reloadPositionOffset = Vector3.zero;
+        _state.reloadRotationOffset = Quaternion.identity;
     }
 
     #endregion
@@ -462,7 +553,7 @@ public class RecoilSystem : MonoBehaviour
             
             // Apply compensation delta directly to accumulated recoil
             Vector2 compensation = _mouseTracker.CompensationDelta;
-            // _state.accumulatedRecoil -= compensation;
+            _state.accumulatedRecoil -= compensation;
         }
 
         // Calculate recovery amount using curve
@@ -473,7 +564,7 @@ public class RecoilSystem : MonoBehaviour
         float recoveryAmount = baseRecoveryRate * compensationMultiplier * deltaTime;
         
         // Decay accumulated recoil
-        // _state.accumulatedRecoil = Vector2.MoveTowards(_state.accumulatedRecoil, Vector2.zero, recoveryAmount);
+        _state.accumulatedRecoil = Vector2.MoveTowards(_state.accumulatedRecoil, Vector2.zero, recoveryAmount);
 
         // Decay weapon offsets
         _state.weaponPositionOffset = Vector3.MoveTowards(_state.weaponPositionOffset, Vector3.zero, recoveryAmount * 0.01f);
@@ -485,7 +576,7 @@ public class RecoilSystem : MonoBehaviour
         // Update camera recoil offset
         if (_mouseLook != null)
         {
-            // _mouseLook.recoilPitchOffset = _state.accumulatedRecoil.x;
+            _mouseLook.recoilPitchOffset = _state.accumulatedRecoil.x;
         }
 
         // Clamp to zero when very small
@@ -540,7 +631,7 @@ public class RecoilSystem : MonoBehaviour
     /// Sets a new recoil configuration.
     /// </summary>
     /// <param name="config">New configuration to apply</param>
-    public void SetConfiguration(RecoilConfiguration config)
+    public void SetConfiguration(RecoilConfigurationSO config)
     {
         Config = config;
     }
@@ -657,6 +748,19 @@ public class RecoilSystem : MonoBehaviour
     }
 
     /// <summary>
+    /// Simulates a single update tick for testing purposes. This runs modules, reload updates and transform updates.
+    /// </summary>
+    /// <param name="deltaTime">Time to simulate</param>
+    public void SimulateUpdateForTesting(float deltaTime)
+    {
+        UpdateModules(deltaTime);
+        UpdateReloadAnimation(deltaTime);
+        ApplyRecovery(deltaTime);
+        UpdateWeaponTransform(deltaTime);
+        _state.timeSinceLastShot += deltaTime;
+    }
+
+    /// <summary>
     /// Forces initialization for testing purposes.
     /// </summary>
     public void ForceInitializeForTesting()
@@ -689,6 +793,16 @@ public class RecoilSystem : MonoBehaviour
     /// Gets the current weapon rotation offset.
     /// </summary>
     public Quaternion CurrentWeaponRotationOffset => _state.weaponRotationOffset;
+
+    /// <summary>
+    /// Gets the current reload position offset (if any) applied by the reload animation.
+    /// </summary>
+    public Vector3 CurrentReloadPositionOffset => _state.reloadPositionOffset;
+
+    /// <summary>
+    /// Gets the current reload rotation offset (if any) applied by the reload animation.
+    /// </summary>
+    public Quaternion CurrentReloadRotationOffset => _state.reloadRotationOffset;
 
     #endregion
 }

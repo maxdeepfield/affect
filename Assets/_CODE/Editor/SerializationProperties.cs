@@ -12,7 +12,7 @@ public class SerializationProperties
 
     /// <summary>
     /// **Feature: epic-recoil-system, Property 6: Configuration Round-Trip Serialization**
-    /// *For any* valid RecoilConfiguration, serializing to JSON and deserializing back 
+    /// *For any* valid RecoilConfigurationSO, serializing to JSON and deserializing back 
     /// SHALL produce a configuration equal to the original.
     /// **Validates: Requirements 2.4, 7.1, 7.2, 7.3**
     /// </summary>
@@ -25,7 +25,7 @@ public class SerializationProperties
         for (int i = 0; i < PropertyTestIterations; i++)
         {
             RecoilGenerators.Seed(i);
-            RecoilConfiguration original = RecoilGenerators.GenerateRecoilConfiguration();
+            RecoilConfigurationSO original = RecoilGenerators.GenerateRecoilConfiguration();
 
             // Serialize to JSON
             string json = original.ToJson();
@@ -39,7 +39,7 @@ public class SerializationProperties
             }
 
             // Deserialize back
-            RecoilConfiguration restored = RecoilConfiguration.FromJson(json);
+            RecoilConfigurationSO restored = RecoilConfigurationSO.FromJson(json);
 
             // Verify equality
             if (!original.Equals(restored))
@@ -63,7 +63,7 @@ public class SerializationProperties
     [Test]
     public void Property16_InvalidJsonReturnsDefaultConfiguration()
     {
-        RecoilConfiguration defaultConfig = new RecoilConfiguration();
+        RecoilConfigurationSO defaultConfig = ScriptableObject.CreateInstance<RecoilConfigurationSO>();
         int failures = 0;
         string lastFailureMessage = "";
 
@@ -84,7 +84,7 @@ public class SerializationProperties
         {
             try
             {
-                RecoilConfiguration result = RecoilConfiguration.FromJson(invalidJson);
+                RecoilConfigurationSO result = RecoilConfigurationSO.FromJson(invalidJson);
 
                 // Should not be null
                 if (result == null)

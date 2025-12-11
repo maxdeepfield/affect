@@ -15,6 +15,10 @@ public class PlayerInputHandler : MonoBehaviour
     public bool UseInputPressedThisFrame { get; private set; }
     public bool ReloadInput { get; private set; }
     public bool ReloadInputPressedThisFrame { get; private set; }
+    public bool RunInput { get; private set; }
+    public bool RunInputPressedThisFrame { get; private set; }
+    public bool CrouchInput { get; private set; }
+    public bool CrouchInputPressedThisFrame { get; private set; }
 
     [Header("Use Settings")]
     [SerializeField] private float useCheckDistance = 3f;
@@ -27,6 +31,8 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction aimAction;
     private InputAction useAction;
     private InputAction reloadAction;
+    private InputAction runAction;
+    private InputAction crouchAction;
 
     void Awake()
     {
@@ -42,6 +48,13 @@ public class PlayerInputHandler : MonoBehaviour
         aimAction = new InputAction("Aim", InputActionType.Button, "<Mouse>/rightButton");
         useAction = new InputAction("Use", InputActionType.Button, "<Keyboard>/f");
         reloadAction = new InputAction("Reload", InputActionType.Button, "<Keyboard>/r");
+        runAction = new InputAction("Run", InputActionType.Button);
+        runAction.AddBinding("<Keyboard>/leftShift");
+        runAction.AddBinding("<Keyboard>/rightShift");
+        crouchAction = new InputAction("Crouch", InputActionType.Button);
+        crouchAction.AddBinding("<Keyboard>/c");
+        crouchAction.AddBinding("<Keyboard>/leftCtrl");
+        crouchAction.AddBinding("<Keyboard>/rightCtrl");
 
         mouseLookAction.Enable();
         movementAction.Enable();
@@ -50,6 +63,8 @@ public class PlayerInputHandler : MonoBehaviour
         aimAction.Enable();
         useAction.Enable();
         reloadAction.Enable();
+        runAction.Enable();
+        crouchAction.Enable();
 
         if (useCamera == null)
         {
@@ -70,6 +85,10 @@ public class PlayerInputHandler : MonoBehaviour
         UseInputPressedThisFrame = useAction.WasPressedThisFrame();
         ReloadInput = reloadAction.IsPressed();
         ReloadInputPressedThisFrame = reloadAction.WasPressedThisFrame();
+        RunInput = runAction.IsPressed();
+        RunInputPressedThisFrame = runAction.WasPressedThisFrame();
+        CrouchInput = crouchAction.IsPressed();
+        CrouchInputPressedThisFrame = crouchAction.WasPressedThisFrame();
 
         Camera cam = useCamera != null ? useCamera : Camera.main;
         if (cam != null)
@@ -92,5 +111,7 @@ public class PlayerInputHandler : MonoBehaviour
         aimAction?.Disable();
         useAction?.Disable();
         reloadAction?.Disable();
+        runAction?.Disable();
+        crouchAction?.Disable();
     }
 }

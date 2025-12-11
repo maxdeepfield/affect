@@ -33,42 +33,49 @@ public static class RecoilGenerators
     }
 
     /// <summary>
-    /// Generates a random RecoilConfiguration with valid values.
+    /// Generates a random RecoilConfigurationSO with valid values.
     /// </summary>
-    public static RecoilConfiguration GenerateRecoilConfiguration()
+    public static RecoilConfigurationSO GenerateRecoilConfiguration()
     {
-        return new RecoilConfiguration
-        {
-            // Vertical Recoil (0.5-5 range)
-            baseVerticalKick = RandomFloat(0.5f, 5f),
-            maxAccumulatedVertical = RandomFloat(5f, 30f),
+        return ScriptableObject.CreateInstance<RecoilConfigurationSO>().InitializeWithRandomValues();
+    }
 
-            // Horizontal Recoil
-            baseHorizontalKick = RandomFloat(-2f, 2f),
-            horizontalSpread = RandomFloat(0.1f, 4f),
+    /// <summary>
+    /// Extension method to initialize RecoilConfigurationSO with random values.
+    /// </summary>
+    public static RecoilConfigurationSO InitializeWithRandomValues(this RecoilConfigurationSO config)
+    {
+        // Vertical Recoil (0.5-5 range)
+        config.baseVerticalKick = RandomFloat(0.5f, 5f);
+        config.maxAccumulatedVertical = RandomFloat(5f, 30f);
 
-            // Weapon Transform
-            weaponKickbackDistance = RandomFloat(0.01f, 0.2f),
-            weaponRotationKick = RandomFloat(1f, 10f),
+        // Horizontal Recoil
+        config.baseHorizontalKick = RandomFloat(-2f, 2f);
+        config.horizontalSpread = RandomFloat(0.1f, 4f);
 
-            // Recovery
-            recoverySpeed = RandomFloat(1f, 20f),
-            // Note: AnimationCurve is not serialized well by JsonUtility, using default
+        // Weapon Transform
+        config.weaponKickbackDistance = RandomFloat(0.01f, 0.2f);
+        config.weaponRotationKick = RandomFloat(1f, 10f);
 
-            // Randomizer
-            verticalVariationMin = RandomFloat(0.5f, 0.95f),
-            verticalVariationMax = RandomFloat(1.05f, 1.5f),
-            noiseScale = RandomFloat(0.1f, 2f),
+        // Recovery
+        config.recoverySpeed = RandomFloat(1f, 20f);
+        // Note: AnimationCurve is not serialized well by JsonUtility, using default
 
-            // Mouse Tracking
-            compensationMultiplier = RandomFloat(0.5f, 3f),
-            maxCompensationRate = RandomFloat(1f, 5f),
+        // Randomizer
+        config.verticalVariationMin = RandomFloat(0.5f, 0.95f);
+        config.verticalVariationMax = RandomFloat(1.05f, 1.5f);
+        config.noiseScale = RandomFloat(0.1f, 2f);
 
-            // Camera Shake
-            shakeIntensity = RandomFloat(0.005f, 0.1f),
-            shakeFrequency = RandomFloat(10f, 50f),
-            pathFollowStrength = RandomFloat(0f, 1f)
-        };
+        // Mouse Tracking
+        config.compensationMultiplier = RandomFloat(0.5f, 3f);
+        config.maxCompensationRate = RandomFloat(1f, 5f);
+
+        // Camera Shake
+        config.shakeIntensity = RandomFloat(0.005f, 0.1f);
+        config.shakeFrequency = RandomFloat(10f, 50f);
+        config.pathFollowStrength = RandomFloat(0f, 1f);
+
+        return config;
     }
 
     /// <summary>

@@ -9,6 +9,11 @@ public class BuildingGenerator : MonoBehaviour
     [SerializeField] private GameObject floorPrefab;
     [SerializeField] private GameObject windowPrefab;
     [SerializeField] private GameObject elevatorPrefab;
+    [SerializeField] private GameObject mainEntranceDoorPrefab; // Falls back to doorPrefab if null
+    [SerializeField] private GameObject enemyPrefab;
+
+    [Header("Enemy Spawning")]
+    [SerializeField, Range(0f, 1f)] private float enemySpawnChance = 0.5f;
 
     [Header("Building Size")]
     [SerializeField] private int buildingWidth = 20;
@@ -34,6 +39,9 @@ public class BuildingGenerator : MonoBehaviour
     private GridCell[,] grid;
     private System.Random random;
     private Transform buildingParent;
+    private Vector2Int mainEntrancePosition;
+    private Vector2Int hallPosition;
+    private float entranceRotation; // Rotation for entrance door based on which wall it's on
 
     private struct DoorCandidate
     {
@@ -94,9 +102,19 @@ public class BuildingGenerator : MonoBehaviour
             Transform floorsParent = new GameObject("Floors").transform;
             floorsParent.SetParent(floorRoot);
 
+            Transform enemiesParent = new GameObject("Enemies").transform;
+            enemiesParent.SetParent(floorRoot);
+
             PlaceWalls(floorOffset, wallsParent);
             PlaceDoors(floorOffset, doorsParent, chosenDoors);
             PlaceFloors(floorOffset, floorsParent);
+            SpawnEnemiesInRooms(floorOffset, enemiesParent);
+
+            // Place main entrance door only on the first floor
+            if (i == 0)
+            {
+                PlaceMainEntranceDoor(floorOffset, doorsParent);
+            }
         }
     }
 
@@ -130,80 +148,301 @@ public class BuildingGenerator : MonoBehaviour
 
     private void GenerateLayout()
     {
-        int centerX = buildingWidth / 2;
-        int hallZ = Mathf.Clamp(
-            buildingDepth / 2 + random.Next(-buildingDepth / 8, buildingDepth / 8),
-            mainCorridorWidth,
-            buildingDepth - mainCorridorWidth - 1);
+        // Randomize hall position anywhere in the building (with margin)
+        int margin = Mathf.Max(hallSize, mainCorridorWidth) + 1;
+        int hallX = random.Next(margin, buildingWidth - margin);
+        int hallZ = random.Next(margin, buildingDepth - margin);
+        hallPosition = new Vector2Int(hallX, hallZ);
 
-        GenerateMainCorridor(centerX);
-        GenerateCrossCorridor(hallZ);
-        GenerateHalls(centerX, hallZ);
-        GenerateCorridorBranches(centerX);
+        // Choose random corridor pattern
+        int pattern = random.Next(0, 4);
+        switch (pattern)
+        {
+            case 0: // L-shape
+                GenerateLShapeCorridor(hallX, hallZ);
+                break;
+            case 1: // T-shape
+                GenerateTShapeCorridor(hallX, hallZ);
+                break;
+            case 2: // Cross (original but offset)
+                GenerateCrossCorridorPattern(hallX, hallZ);
+                break;
+            case 3: // Diagonal corridors from hall
+                GenerateDiagonalCorridors(hallX, hallZ);
+                break;
+        }
+
+        GenerateHalls(hallX, hallZ);
+        GenerateRandomEntrance();
+        GenerateCorridorBranchesFromHall(hallX, hallZ);
         GenerateRooms();
     }
 
-    private void GenerateMainCorridor(int centerX)
+    private void GenerateLShapeCorridor(int hallX, int hallZ)
     {
         int halfWidth = Mathf.Max(0, mainCorridorWidth / 2);
-        for (int z = 0; z < buildingDepth; z++)
+        bool flipH = random.Next(0, 2) == 0;
+        bool flipV = random.Next(0, 2) == 0;
+
+        // Vertical segment
+        int startZ = flipV ? hallZ : 0;
+        int endZ = flipV ? buildingDepth : hallZ + 1;
+        for (int z = startZ; z < endZ; z++)
         {
-            for (int x = centerX - halfWidth; x <= centerX + halfWidth; x++)
+            for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
             {
-                if (!IsInBounds(x, z)) continue;
-                grid[x, z].Type = CellType.Corridor;
+                if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
             }
         }
 
-        if (IsInBounds(centerX, 0))
-        {
-            grid[centerX, 0].Type = CellType.Entrance;
-        }
-    }
-
-    private void GenerateCrossCorridor(int hallZ)
-    {
-        int halfWidth = Mathf.Max(0, mainCorridorWidth / 2);
-        for (int x = 0; x < buildingWidth; x++)
+        // Horizontal segment
+        int startX = flipH ? hallX : 0;
+        int endX = flipH ? buildingWidth : hallX + 1;
+        for (int x = startX; x < endX; x++)
         {
             for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
             {
-                if (!IsInBounds(x, z)) continue;
-                if (grid[x, z].Type == CellType.Empty)
-                {
+                if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
                     grid[x, z].Type = CellType.Corridor;
+            }
+        }
+    }
+
+    private void GenerateTShapeCorridor(int hallX, int hallZ)
+    {
+        int halfWidth = Mathf.Max(0, mainCorridorWidth / 2);
+        int orientation = random.Next(0, 4); // 0=top, 1=bottom, 2=left, 3=right
+
+        // Always draw full horizontal or vertical line through hall
+        if (orientation < 2)
+        {
+            // Horizontal main line
+            for (int x = 0; x < buildingWidth; x++)
+            {
+                for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
+                {
+                    if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
+                }
+            }
+            // Vertical stem
+            int stemStart = orientation == 0 ? hallZ : 0;
+            int stemEnd = orientation == 0 ? buildingDepth : hallZ + 1;
+            for (int z = stemStart; z < stemEnd; z++)
+            {
+                for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
+                {
+                    if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
+                        grid[x, z].Type = CellType.Corridor;
+                }
+            }
+        }
+        else
+        {
+            // Vertical main line
+            for (int z = 0; z < buildingDepth; z++)
+            {
+                for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
+                {
+                    if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
+                }
+            }
+            // Horizontal stem
+            int stemStart = orientation == 2 ? hallX : 0;
+            int stemEnd = orientation == 2 ? buildingWidth : hallX + 1;
+            for (int x = stemStart; x < stemEnd; x++)
+            {
+                for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
+                {
+                    if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
+                        grid[x, z].Type = CellType.Corridor;
                 }
             }
         }
     }
 
-    private void GenerateHalls(int centerX, int hallZ)
+    private void GenerateCrossCorridorPattern(int hallX, int hallZ)
+    {
+        int halfWidth = Mathf.Max(0, mainCorridorWidth / 2);
+
+        // Vertical corridor through hall
+        for (int z = 0; z < buildingDepth; z++)
+        {
+            for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
+            {
+                if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
+            }
+        }
+
+        // Horizontal corridor through hall
+        for (int x = 0; x < buildingWidth; x++)
+        {
+            for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
+            {
+                if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
+                    grid[x, z].Type = CellType.Corridor;
+            }
+        }
+    }
+
+    private void GenerateDiagonalCorridors(int hallX, int hallZ)
+    {
+        int halfWidth = Mathf.Max(0, mainCorridorWidth / 2);
+
+        // Pick 2-4 random directions to extend corridors
+        int numCorridors = random.Next(2, 5);
+        List<int> directions = new List<int> { 0, 1, 2, 3 }; // N, S, E, W
+
+        for (int i = 0; i < numCorridors && directions.Count > 0; i++)
+        {
+            int idx = random.Next(0, directions.Count);
+            int dir = directions[idx];
+            directions.RemoveAt(idx);
+
+            switch (dir)
+            {
+                case 0: // North
+                    for (int z = hallZ; z < buildingDepth; z++)
+                    {
+                        for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
+                        {
+                            if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
+                        }
+                    }
+                    break;
+                case 1: // South
+                    for (int z = 0; z <= hallZ; z++)
+                    {
+                        for (int x = hallX - halfWidth; x <= hallX + halfWidth; x++)
+                        {
+                            if (IsInBounds(x, z)) grid[x, z].Type = CellType.Corridor;
+                        }
+                    }
+                    break;
+                case 2: // East
+                    for (int x = hallX; x < buildingWidth; x++)
+                    {
+                        for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
+                        {
+                            if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
+                                grid[x, z].Type = CellType.Corridor;
+                        }
+                    }
+                    break;
+                case 3: // West
+                    for (int x = 0; x <= hallX; x++)
+                    {
+                        for (int z = hallZ - halfWidth; z <= hallZ + halfWidth; z++)
+                        {
+                            if (IsInBounds(x, z) && grid[x, z].Type == CellType.Empty)
+                                grid[x, z].Type = CellType.Corridor;
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void GenerateRandomEntrance()
+    {
+        // Collect all corridor cells on the perimeter
+        List<(int x, int z, float rotation)> perimeterCorridors = new List<(int, int, float)>();
+
+        // South wall (z = 0)
+        for (int x = 0; x < buildingWidth; x++)
+        {
+            if (IsCorridorLike(grid[x, 0].Type))
+                perimeterCorridors.Add((x, 0, 180f));
+        }
+        // North wall (z = depth-1)
+        for (int x = 0; x < buildingWidth; x++)
+        {
+            if (IsCorridorLike(grid[x, buildingDepth - 1].Type))
+                perimeterCorridors.Add((x, buildingDepth - 1, 0f));
+        }
+        // West wall (x = 0)
+        for (int z = 0; z < buildingDepth; z++)
+        {
+            if (IsCorridorLike(grid[0, z].Type))
+                perimeterCorridors.Add((0, z, 270f));
+        }
+        // East wall (x = width-1)
+        for (int z = 0; z < buildingDepth; z++)
+        {
+            if (IsCorridorLike(grid[buildingWidth - 1, z].Type))
+                perimeterCorridors.Add((buildingWidth - 1, z, 90f));
+        }
+
+        if (perimeterCorridors.Count > 0)
+        {
+            var chosen = perimeterCorridors[random.Next(0, perimeterCorridors.Count)];
+            mainEntrancePosition = new Vector2Int(chosen.x, chosen.z);
+            entranceRotation = chosen.rotation;
+            grid[chosen.x, chosen.z].Type = CellType.Entrance;
+
+            // Mark door flag based on which wall
+            switch ((int)chosen.rotation)
+            {
+                case 180: grid[chosen.x, chosen.z].SouthDoor = true; break;
+                case 0: grid[chosen.x, chosen.z].NorthDoor = true; break;
+                case 270: grid[chosen.x, chosen.z].WestDoor = true; break;
+                case 90: grid[chosen.x, chosen.z].EastDoor = true; break;
+            }
+        }
+    }
+
+    private void GenerateCorridorBranchesFromHall(int hallX, int hallZ)
+    {
+        int attempts = Mathf.Max(1, corridorBranches);
+        for (int i = 0; i < attempts; i++)
+        {
+            // Pick random corridor cell to branch from
+            int startX = hallX + random.Next(-buildingWidth / 4, buildingWidth / 4);
+            int startZ = hallZ + random.Next(-buildingDepth / 4, buildingDepth / 4);
+            startX = Mathf.Clamp(startX, 1, buildingWidth - 2);
+            startZ = Mathf.Clamp(startZ, 1, buildingDepth - 2);
+
+            if (!IsInBounds(startX, startZ) || !IsCorridorLike(grid[startX, startZ].Type))
+                continue;
+
+            // Random direction
+            bool horizontal = random.Next(0, 2) == 0;
+            int direction = random.Next(0, 2) == 0 ? -1 : 1;
+            int length = random.Next(Mathf.Max(4, minRoomSize + 1), Mathf.Max(6, (horizontal ? buildingWidth : buildingDepth) / 2));
+
+            if (horizontal)
+                CarveHorizontalBranch(startX, startZ, direction, length);
+            else
+                CarveVerticalBranch(startX, startZ, direction, length);
+        }
+    }
+
+    private void CarveVerticalBranch(int startX, int startZ, int direction, int length)
+    {
+        for (int step = 0; step < length; step++)
+        {
+            int z = startZ + direction * step;
+            if (!IsInBounds(startX, z))
+                break;
+
+            if (grid[startX, z].Type == CellType.Empty)
+            {
+                grid[startX, z].Type = CellType.Corridor;
+            }
+        }
+    }
+
+    private void GenerateHalls(int hallX, int hallZ)
     {
         int halfHall = Mathf.Max(1, hallSize) / 2;
         for (int dx = -halfHall; dx <= halfHall; dx++)
         {
             for (int dz = -halfHall; dz <= halfHall; dz++)
             {
-                int nx = centerX + dx;
+                int nx = hallX + dx;
                 int nz = hallZ + dz;
                 if (!IsInBounds(nx, nz)) continue;
                 grid[nx, nz].Type = CellType.Hall;
             }
-        }
-    }
-
-    private void GenerateCorridorBranches(int centerX)
-    {
-        int attempts = Mathf.Max(1, corridorBranches);
-        for (int i = 0; i < attempts; i++)
-        {
-            int startZ = random.Next(1, buildingDepth - 1);
-            if (!IsCorridorLike(grid[centerX, startZ].Type))
-                continue;
-
-            int direction = random.Next(0, 2) == 0 ? -1 : 1;
-            int length = random.Next(Mathf.Max(4, minRoomSize + 1), Mathf.Max(6, buildingWidth / 2));
-            CarveHorizontalBranch(centerX, startZ, direction, length);
         }
     }
 
@@ -540,6 +779,35 @@ public class BuildingGenerator : MonoBehaviour
         }
     }
 
+    private void PlaceMainEntranceDoor(Vector3 floorOffset, Transform doorsParent)
+    {
+        if (!IsInBounds(mainEntrancePosition.x, mainEntrancePosition.y))
+            return;
+
+        GridCell entranceCell = grid[mainEntrancePosition.x, mainEntrancePosition.y];
+        if (entranceCell.Type != CellType.Entrance)
+            return;
+
+        GameObject prefabToUse = mainEntranceDoorPrefab != null ? mainEntranceDoorPrefab : doorPrefab;
+        if (prefabToUse == null)
+            return;
+
+        Vector3 position = entranceCell.GetWorldPosition(cellSize) + floorOffset;
+        Vector3 offset = Vector3.zero;
+
+        // Calculate offset based on which wall the entrance is on
+        switch ((int)entranceRotation)
+        {
+            case 180: offset = new Vector3(0, 0, -cellSize / 2f); break; // South
+            case 0: offset = new Vector3(0, 0, cellSize / 2f); break;    // North
+            case 270: offset = new Vector3(-cellSize / 2f, 0, 0); break; // West
+            case 90: offset = new Vector3(cellSize / 2f, 0, 0); break;   // East
+        }
+
+        GameObject door = Instantiate(prefabToUse, position + offset, Quaternion.Euler(0, entranceRotation, 0), doorsParent);
+        door.name = "MainEntranceDoor";
+    }
+
     private void SetDoorFlag(GridCell cell, float rotation)
     {
         switch ((int)rotation)
@@ -811,7 +1079,8 @@ public class BuildingGenerator : MonoBehaviour
 
     private void PlaceFloors(Vector3 floorOffset, Transform floorsParent)
     {
-        Vector2Int liftCell = new Vector2Int(buildingWidth / 2, buildingDepth / 2);
+        // Use the randomly placed hall position for the lift
+        Vector2Int liftCell = hallPosition;
 
         for (int x = 0; x < buildingWidth; x++)
         {
@@ -854,6 +1123,42 @@ public class BuildingGenerator : MonoBehaviour
                     GameObject floor = Instantiate(floorPrefab, position, Quaternion.identity, floorsParent);
                     floor.name = $"Floor_{x}_{z}";
                 }
+            }
+        }
+    }
+
+    private void SpawnEnemiesInRooms(Vector3 floorOffset, Transform enemiesParent)
+    {
+        if (enemyPrefab == null) return;
+
+        // Track which rooms already have an enemy spawned
+        HashSet<int> roomsWithEnemy = new HashSet<int>();
+
+        for (int x = 0; x < buildingWidth; x++)
+        {
+            for (int z = 0; z < buildingDepth; z++)
+            {
+                GridCell cell = grid[x, z];
+                if (cell.Type != CellType.Room || cell.RoomId < 0)
+                    continue;
+
+                // Only spawn one enemy per room
+                if (roomsWithEnemy.Contains(cell.RoomId))
+                    continue;
+
+                // Roll for spawn chance
+                if (random.NextDouble() > enemySpawnChance)
+                {
+                    roomsWithEnemy.Add(cell.RoomId); // Mark as processed even if no spawn
+                    continue;
+                }
+
+                // Spawn enemy at center of this cell
+                Vector3 spawnPos = cell.GetWorldPosition(cellSize) + floorOffset;
+                GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemiesParent);
+                enemy.name = $"Enemy_Room{cell.RoomId}";
+
+                roomsWithEnemy.Add(cell.RoomId);
             }
         }
     }

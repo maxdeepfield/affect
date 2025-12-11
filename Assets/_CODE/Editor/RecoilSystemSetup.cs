@@ -359,46 +359,45 @@ public class RecoilSystemSetup : EditorWindow
     }
 
     /// <summary>
-    /// Applies default RecoilConfiguration values to the RecoilSystem.
+    /// Applies default RecoilConfigurationSO values to the RecoilSystem.
     /// </summary>
     private static void ApplyDefaultConfiguration(RecoilSystem recoilSystem)
     {
         // Create default configuration with sensible values
-        RecoilConfiguration config = new RecoilConfiguration
-        {
-            // Vertical Recoil
-            baseVerticalKick = 2f,
-            maxAccumulatedVertical = 15f,
-            
-            // Horizontal Recoil
-            baseHorizontalKick = 0.5f,
-            horizontalSpread = 2f,
-            
-            // Weapon Transform
-            weaponKickbackDistance = 0.05f,
-            weaponRotationKick = 3f,
-            
-            // Recovery
-            recoverySpeed = 8f,
-            recoveryCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f),
-            
-            // Randomizer
-            verticalVariationMin = 0.8f,
-            verticalVariationMax = 1.2f,
-            noiseScale = 0.5f,
-            
-            // Mouse Tracking
-            compensationMultiplier = 1.5f,
-            maxCompensationRate = 2f,
-            
-            // Camera Shake
-            shakeIntensity = 0.02f,
-            shakeFrequency = 25f,
-            pathFollowStrength = 0.5f
-        };
+        RecoilConfigurationSO config = ScriptableObject.CreateInstance<RecoilConfigurationSO>();
+
+        // Vertical Recoil
+        config.baseVerticalKick = 2f;
+        config.maxAccumulatedVertical = 15f;
+
+        // Horizontal Recoil
+        config.baseHorizontalKick = 0.5f;
+        config.horizontalSpread = 2f;
+
+        // Weapon Transform
+        config.weaponKickbackDistance = 0.05f;
+        config.weaponRotationKick = 3f;
+
+        // Recovery
+        config.recoverySpeed = 8f;
+        config.recoveryCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+
+        // Randomizer
+        config.verticalVariationMin = 0.8f;
+        config.verticalVariationMax = 1.2f;
+        config.noiseScale = 0.5f;
+
+        // Mouse Tracking
+        config.compensationMultiplier = 1.5f;
+        config.maxCompensationRate = 2f;
+
+        // Camera Shake
+        config.shakeIntensity = 0.02f;
+        config.shakeFrequency = 25f;
+        config.pathFollowStrength = 0.5f;
 
         SetPrivateField(recoilSystem, "_config", config);
-        Debug.Log("[RecoilSystemSetup] Applied default RecoilConfiguration values.");
+        Debug.Log("[RecoilSystemSetup] Applied default RecoilConfigurationSO values.");
     }
 
     /// <summary>
@@ -454,7 +453,7 @@ public class RecoilSystemSetup : EditorWindow
     [MenuItem("Tools/Recoil System/Create Default Configuration")]
     public static void CreateDefaultConfiguration()
     {
-        RecoilConfiguration config = new RecoilConfiguration();
+        RecoilConfigurationSO config = ScriptableObject.CreateInstance<RecoilConfigurationSO>();
         string json = config.ToJson();
         
         string path = EditorUtility.SaveFilePanel(

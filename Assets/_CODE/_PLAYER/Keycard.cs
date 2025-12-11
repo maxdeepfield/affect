@@ -10,10 +10,14 @@ public class Keycard : MonoBehaviour
     /// </summary>
     public void Collect()
     {
-        PlayerInventory inventory = FindPlayerInventory();
+        PlayerInventory inventory = ResolveInventory();
         if (inventory != null)
         {
-            inventory.AddKeycard(stage);
+            inventory.UpgradeKeycard(stage);
+        }
+        else
+        {
+            Debug.LogWarning($"Keycard stage {stage} collected but no PlayerInventory found in the scene.");
         }
 
         if (destroyOnCollect)
@@ -22,7 +26,19 @@ public class Keycard : MonoBehaviour
         }
     }
 
-    private PlayerInventory FindPlayerInventory()
+    private PlayerInventory ResolveInventory()
+    {
+        if (PlayerInventory.Instance != null)
+            return PlayerInventory.Instance;
+
+        PlayerInventory inventory = FindPlayerInventoryByTag();
+        if (inventory != null)
+            return inventory;
+
+        return FindObjectOfType<PlayerInventory>();
+    }
+
+    private PlayerInventory FindPlayerInventoryByTag()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)

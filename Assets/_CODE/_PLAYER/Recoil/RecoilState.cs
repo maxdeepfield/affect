@@ -38,6 +38,16 @@ public struct RecoilState
     public Quaternion weaponRotationOffset;
 
     /// <summary>
+    /// Current reload position offset (local space) applied during reload animation.
+    /// </summary>
+    public Vector3 reloadPositionOffset;
+
+    /// <summary>
+    /// Current reload rotation offset (local space) applied during reload animation.
+    /// </summary>
+    public Quaternion reloadRotationOffset;
+
+    /// <summary>
     /// Creates a default/reset recoil state.
     /// </summary>
     public static RecoilState Default => new RecoilState
@@ -46,8 +56,10 @@ public struct RecoilState
         currentPath = Vector2.zero,
         shotCount = 0,
         timeSinceLastShot = 0f,
-        weaponPositionOffset = Vector3.zero,
-        weaponRotationOffset = Quaternion.identity
+            weaponPositionOffset = Vector3.zero,
+            weaponRotationOffset = Quaternion.identity,
+            reloadPositionOffset = Vector3.zero,
+            reloadRotationOffset = Quaternion.identity
     };
 
     /// <summary>
@@ -61,6 +73,8 @@ public struct RecoilState
         timeSinceLastShot = 0f;
         weaponPositionOffset = Vector3.zero;
         weaponRotationOffset = Quaternion.identity;
+        reloadPositionOffset = Vector3.zero;
+        reloadRotationOffset = Quaternion.identity;
     }
 
     /// <summary>

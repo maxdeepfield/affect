@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float runSpeed = 8f;
+    [SerializeField] private float crouchSpeed = 2.5f;
+    [SerializeField] private float crouchHeight = 1.2f;
+    [SerializeField] private float crouchCenterY = 0.6f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
 
@@ -17,11 +21,16 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputHandler inputHandler;
     private float verticalVelocity = 0f;
     private bool isGrounded = false;
+    private bool isCrouching = false;
+    private float standHeight;
+    private Vector3 standCenter;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         inputHandler = GetComponent<PlayerInputHandler>();
+        standHeight = characterController.height;
+        standCenter = characterController.center;
         
         // Find FootstepSounds if not assigned
         if (footstepSounds == null)
@@ -32,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        HandleCrouch();
         HandleMovement();
         HandleJumping();
     }
@@ -47,7 +57,17 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = (forward * forwardMovement + right * strafeMovement).normalized;
 
-        movement *= moveSpeed;
+        float speed = moveSpeed;
+        if (isCrouching)
+        {
+            speed = crouchSpeed;
+        }
+        else if (inputHandler.RunInput)
+        {
+            speed = runSpeed;
+        }
+
+        movement *= speed;
 
         if (!isGrounded)
         {
@@ -100,5 +120,60 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         UpdateGroundedStatus();
+    }
+
+    private void HandleCrouch()
+    {
+        if (characterController == null) return;
+
+        bool wantsCrouch = inputHandler.CrouchInput;
+
+        if (wantsCrouch)
+        {
+            ApplyCrouch(true);
+        }
+        else if (isCrouching && CanStandUp())
+        {
+            ApplyCrouch(false);
+        }
+    }
+
+    private void ApplyCrouch(bool crouch)
+    {
+        if (crouch == isCrouching) return;
+
+        if (crouch)
+        {
+            characterController.height = crouchHeight;
+            characterController.center = new Vector3(standCenter.x, crouchCenterY, standCenter.z);
+        }
+        else
+        {
+            characterController.height = standHeight;
+            characterController.center = standCenter;
+        }
+
+        isCrouching = crouch;
+    }
+
+    private bool CanStandUp()
+    {
+        if (characterController == null) return true;
+
+        float radius = characterController.radius;
+        float skin = characterController.skinWidth;
+        Vector3 bottom = transform.position + characterController.center - Vector3.up * (characterController.height * 0.5f - radius);
+        float castDistance = standHeight - characterController.height;
+        if (castDistance <= 0.01f) return true;
+
+        if (Physics.SphereCast(bottom, radius - skin, Vector3.up, out RaycastHit hit, castDistance + 0.05f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            if (hit.collider != null && hit.collider != characterController)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

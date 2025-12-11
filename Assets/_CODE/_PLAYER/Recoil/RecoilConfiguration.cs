@@ -83,6 +83,19 @@ public class RecoilConfiguration
     [Min(1f)]
     public float shakeFrequency = 25f;
 
+    [Header("Reload Animation")]
+    [Tooltip("Pitch rotation during reload (negative = rotate down/back)")]
+    public float reloadRotationPitch = -15f;
+
+    [Tooltip("Yaw rotation during reload (positive = rotate right)")]
+    public float reloadRotationYaw = 25f;
+
+    [Tooltip("Position offset during reload (x=right, y=up, z=forward)")]
+    public Vector3 reloadPositionOffset = new Vector3(0.03f, -0.02f, 0.08f);
+
+    [Tooltip("Animation curve for reload motion (0-1 normalized)")]
+    public AnimationCurve reloadAnimationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
     // Deprecated, but kept for editor script compatibility
     public float pathFollowStrength = 0.5f;
 
